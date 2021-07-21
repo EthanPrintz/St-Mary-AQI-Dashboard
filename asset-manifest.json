@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/st-mary-open-aq/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/st-mary-open-aq/static/js/main.5221a9d8.chunk.js",
+    "main.js.map": "/st-mary-open-aq/static/js/main.5221a9d8.chunk.js.map",
+    "runtime-main.js": "/st-mary-open-aq/static/js/runtime-main.4d9d71c6.js",
+    "runtime-main.js.map": "/st-mary-open-aq/static/js/runtime-main.4d9d71c6.js.map",
+    "static/js/2.a41d89ce.chunk.js": "/st-mary-open-aq/static/js/2.a41d89ce.chunk.js",
+    "static/js/2.a41d89ce.chunk.js.map": "/st-mary-open-aq/static/js/2.a41d89ce.chunk.js.map",
+    "static/js/3.fdbf1707.chunk.js": "/st-mary-open-aq/static/js/3.fdbf1707.chunk.js",
+    "static/js/3.fdbf1707.chunk.js.map": "/st-mary-open-aq/static/js/3.fdbf1707.chunk.js.map",
+    "index.html": "/st-mary-open-aq/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/st-mary-open-aq/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.a41d89ce.chunk.js.LICENSE.txt": "/st-mary-open-aq/static/js/2.a41d89ce.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d9d71c6.js",
+    "static/js/2.a41d89ce.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.5221a9d8.chunk.js"
+  ]
+}
