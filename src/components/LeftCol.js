@@ -1,10 +1,13 @@
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
 function LeftCol() {
   return (
     <Container>
-      <LeftColHeader></LeftColHeader>
+      <LeftColHeader>
+        <ReactSVG src="./img/logos/openq-logo.svg" />
+      </LeftColHeader>
     </Container>
   );
 }
