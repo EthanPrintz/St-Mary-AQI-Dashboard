@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import { readString } from 'react-papaparse';
+import LeftCol from './components/LeftCol';
 
 function getSensorDataByURL(url) {
   const response = fetch(url)
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <AppContainer>
-      <LeftCol></LeftCol>
+      <LeftCol />
     </AppContainer>
   );
 }
@@ -67,16 +68,6 @@ const AppContainer = styled.div`
   padding: 0;
   margin: 0;
   background-color: grey;
-`;
-
-const LeftCol = styled.div`
-  width: 20rem;
-  height: 90vh;
-  position: absolute;
-  top: 5vh;
-  left: 5vh;
-  border-radius: 2rem;
-  background-color: #f4f4f4;
 `;
 
 export default App;
