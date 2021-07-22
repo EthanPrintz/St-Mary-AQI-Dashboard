@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LeftCol from './components/LeftCol';
+import Map from './components/Map';
 import { getSensorDataByURL } from './utils/getSensorData';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.css';
+import { isDOMComponent } from 'react-dom/test-utils';
 
 function App() {
   useEffect(() => {
@@ -14,6 +17,7 @@ function App() {
   return (
     <AppContainer>
       <LeftCol />
+      <Map />
     </AppContainer>
   );
 }
