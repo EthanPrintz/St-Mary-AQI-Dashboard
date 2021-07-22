@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <title>mapbox stuff</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+	  .marker {
+	  background-image: url('marker.svg');
+	  background-size: cover;
+	  width: 50px;
+	  height: 50px;
+	  border-radius: 50%;
+	  cursor: pointer;
+	}
+
+	.mapboxgl-popup {
+	  max-width: 200px;
+	}
+
+	.mapboxgl-popup-content {
+	  text-align: center;
+	}
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+//https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/#getting-started
+mapboxgl.accessToken = '<INSERT KEY>';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/ethanprintz/ckr59in1c17s017o7ep66ebi0',
+  center: [-76.549982, 38.297894],
+  zoom: 9,
+  minZoom: 8,
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5042, 38.2087]
+    },
+    properties: {
+      title: 'Sensor 1',
+      description: 'Air Quality: 59%'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5742, 38.2917]
+    },
+    properties: {
+      title: 'Sensor 2',
+      description: 'Air Quality: 21%'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5342, 38.2887]
+    },
+    properties: {
+      title: 'Sensor 3',
+      description: 'Air Quality: 82%'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5242, 38.2887]
+    },
+    properties: {
+      title: 'Sensor 4',
+      description: 'Air Quality: 19%'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5682, 38.3187]
+    },
+    properties: {
+      title: 'Sensor 5',
+      description: 'Air Quality: 95%'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-76.5142, 38.2287]
+    },
+    properties: {
+      title: 'Sensor 6',
+      description: 'Air Quality: 84%'
+    }
+  }
+  ]
+};
+
+	// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+	.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+    .addTo(map);
+});
+
+
+</script>
+
+</body>
+</html>
