@@ -1,0 +1,50 @@
+[
+	{
+		"color": "green",
+		"hex":"#6CBE44",
+		"low": 0,
+		"high": 50,
+		"description": "Good",
+		"guidance": "Great day to be active outside!"
+	},
+	{
+		"color": "yellow",
+		"hex":"#F1C510",
+		"low": 51,
+		"high": 100,
+		"description": "Moderate",
+		"guidance": "Good day to be active outside!<br><br>Community members who are unusually sensitive to air pollution could have symptoms."
+	},
+	{
+		"color": "orange",
+		"hex":"#F1C510",
+		"low": 101,
+		"high": 150,
+		"description": "Unhealthy for Sensitive Groups",
+		"guidance": "It’s OK to be active outside, especially for short activities such as recess and physical education (PE).<br><br>For longer activities such as sports or outdoor physical activities, take more breaks and do less intense activities.<br><br>Watch for symptoms and take action as needed.<br><br>Individuals should follow their asthma action plans and keep their quick-relief medicine handy."
+	},
+	{
+		"color": "red",
+		"hex":"#E42027",
+		"low": 151,
+		"high": 200,
+		"description": "Unhealthy",
+		"guidance": "For all outdoor activities, take more breaks and do less intense activities.<br><br>Consider moving longer or more intense activities indoors or rescheduling them to another day or time.<br><br>Watch for symptoms and take action as needed.<br><br>Individuals should follow their asthma action plans and keep their quick-relief medicine handy."
+	},
+	{
+		"color": "purple",
+		"hex":"#9E519F",
+		"low": 201,
+		"high": 300,
+		"description": "Very Unhealthy",
+		"guidance": "Move all activities indoors or reschedule them to another day."
+	},
+	{
+		"color": "maroon",
+		"hex": "#5E325F",
+		"low": 301,
+		"high": 500,
+		"description": "Hazardous",
+		"guidance": "Move all activities indoors or reschedule them to another day."
+	}
+]

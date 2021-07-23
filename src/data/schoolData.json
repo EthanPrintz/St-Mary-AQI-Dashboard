@@ -1,0 +1,64 @@
+[
+		{
+			"id": 1,
+			"name": "Benjamin Banneker Elementary School",
+			"short_name": "BES",
+			"category": "elementary",
+			"lat": 38.3297214,
+			"long": -76.6758535,
+			"sensors": [
+				{
+					"id": 93013,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 93015,
+					"name": "Front Sensor"
+				},
+				{
+					"id": 93025,
+					"name": "Right Side Sensor"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"name": "Captain Walter Francis Duke Elementary School",
+			"short_name": "CWFD",
+			"category": "elementary",
+			"lat": 38.3144394,
+			"long": -76.6363073,
+			"sensors": [
+				{
+					"id": 90659,
+					"name": "Front Right Sensor"
+				},
+				{
+					"id": 93027,
+					"name": "Front Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"name": "Dynard Elementary School",
+			"short_name": "CWFD",
+			"category": "elementary",
+			"lat": 38.3140916,
+			"long": -76.7591032,
+			"sensors": [
+				{
+					"id": 92421,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 92425,
+					"name": "Right Side Sensor"
+				},
+				{
+					"id": 93021,
+					"name": "Front Sensor"
+				}
+			]
+		}
+]
