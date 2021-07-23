@@ -1,12 +1,18 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
+import { ReactComponent as OpenAQ } from '../assets/logos/openaq-logo.svg';
+import { ReactComponent as StMary } from '../assets/logos/st-mary-logo.svg';
 
 function LeftCol() {
   return (
     <Container>
       <LeftColHeader>
-        <ReactSVG src="./img/logos/openq-logo.svg" />
+        <a href="https://openaq.org">
+          <OpenAQLogo />
+        </a>
+        <a href="https://smchd.org/breathewell/">
+          <StMaryLogo />
+        </a>
       </LeftColHeader>
     </Container>
   );
@@ -30,6 +36,21 @@ const LeftColHeader = styled.div`
   border-bottom: 0.15rem solid #ededed;
   border-top-right-radius: 2rem;
   border-top-left-radius: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 0.4rem;
+  box-sizing: border-box;
+`;
+
+const OpenAQLogo = styled(OpenAQ)`
+  height: 4rem;
+  width: 4rem;
+`;
+const StMaryLogo = styled(StMary)`
+  height: 2.75rem;
+  width: 12rem;
 `;
 
 export default LeftCol;

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
 import MapGL from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 function Map() {
   const [viewport, setViewport] = useState({
-    latitude: 38.297894,
-    longitude: -76.549982,
-    zoom: 10.72,
-    bearing: 20.8,
-    pitch: 44.04,
+    latitude: 38.21499,
+    longitude: -76.534533,
+    zoom: 10.62,
+    bearing: 10.18,
+    pitch: 56.05,
   });
-  console.log(process.env.MAPBOX_ACCESS_TOKEN);
+
+  const geoMarkerDummyData = [];
 
   return (
     <Container>
@@ -22,7 +23,9 @@ function Map() {
         mapStyle="mapbox://styles/ethanprintz/ckr59in1c17s017o7ep66ebi0"
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
-      />
+      >
+        {}
+      </MapGL>
     </Container>
   );
 }
