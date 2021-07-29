@@ -5,7 +5,6 @@ import Map from './components/Map';
 import BarChart from './components/BarChart';
 import { getSensorDataByURL } from './utils/getSensorData';
 import './App.css';
-import { isDOMComponent } from 'react-dom/test-utils';
 
 function App() {
   useEffect(() => {
@@ -14,20 +13,19 @@ function App() {
     );
   }, []);
 
-	let data = [50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10]
-	let dimensions = [300, 200, 50]
+  let data = [50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10];
+  let dimensions = [300, 200, 50];
 
   return (
     <AppContainer>
-	  <BarChart data={data} dimensions={dimensions} desc="PM 2.5"/>
-	  <BarChart data={data} dimensions={dimensions} desc="PM 10"/>
-	  <BarChart data={data} dimensions={dimensions} gray desc="Temperature"/>
-	  {/*<LeftCol />*/}
-	  {/*<Map />*/}
+      {/* <BarChart data={data} dimensions={dimensions} desc="PM 2.5" />
+      <BarChart data={data} dimensions={dimensions} desc="PM 10" />
+      <BarChart data={data} dimensions={dimensions} gray desc="Temperature" /> */}
+      <LeftCol />
+      <Map />
     </AppContainer>
   );
 }
-
 
 const AppContainer = styled.div`
   width: 100vw;

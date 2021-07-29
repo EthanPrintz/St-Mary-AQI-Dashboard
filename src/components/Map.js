@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import MapGL from 'react-map-gl';
+import Flag from './Flag';
+import schoolData from '../data/schoolData.json';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 function Map() {
@@ -12,7 +14,18 @@ function Map() {
     pitch: 56.05,
   });
 
-  const geoMarkerDummyData = [];
+  const flags = React.useMemo(
+    () =>
+      schoolData.map((school) => (
+        <Flag
+          lat={school.lat}
+          long={school.long}
+          aqi={40}
+          schoolCode={school.id}
+        />
+      )),
+    [schoolData]
+  );
 
   return (
     <Container>
@@ -24,7 +37,7 @@ function Map() {
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
       >
-        {}
+        {flags}
       </MapGL>
     </Container>
   );
