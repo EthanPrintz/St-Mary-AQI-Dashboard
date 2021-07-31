@@ -1,0 +1,123 @@
+.modal-container{
+    width: 350px;
+    height: 550px;
+    border-radius: 30px;
+    background-color: #F4F4F4;
+    font-family: "PT Sans";
+    
+    .header{
+        height: 40px;
+
+        background-color: #6CBE44;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+
+        text-align: center;
+        color: white;
+        font-size: 17pt;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: bold;
+    }
+
+    .body-content{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 18px;
+    }
+    
+    .selection-container{
+        color: #909090;
+        background-color: #FFFCFC;
+        // background-color: red;
+        padding: 15px;
+        width: 250px;
+        border-radius: 10px;
+
+        .selection-title-container{
+            padding-bottom: 5px;
+
+            .selection-title{
+                font-size: 11pt;
+                font-weight: bold;
+                color: #909090;
+    
+            }
+        }
+
+        .horizontal-list-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .selection-item{
+                padding: 0 7px 0 7px;
+                border-radius: 15px;
+                border: 1px solid #8F8F8F;
+
+                text-align: center;
+                vertical-align: middle;
+                cursor: pointer;
+
+                span{
+                    color: #8F8F8F;
+                    font-size: 12px;
+                    font-family: "PT Sans";
+                    font-weight: bold;
+                    font-style: italic;
+                }
+            }
+
+            .selection-item.checked{
+                background-color: #8F8F8F;
+                span{
+                    color: white;
+                }
+            }
+
+            input{                
+                text-align: center;
+                width: 110px;
+
+                border-radius: 15px;
+                border: 1px solid #EDEDED;
+
+                font-family: "PT Sans";
+                font-size: 10pt;
+                color: #909090;
+                font-weight: bold;
+                font-style: italic;
+
+                display: inline-block;
+                // flex-direction: row-reverse;
+            }
+
+            ::-webkit-calendar-picker-indicator {
+                padding-right: 5px;
+                margin: 0px;
+                cursor: pointer;
+            }
+
+        }
+
+        .dates{
+            padding-top: 5px;
+        }
+    }
+
+    .export-csv{
+        border-radius: 15px;
+        border: 2px solid #8F8F8F;
+        background-color: #F4F4F4;
+
+        width: 105px;
+
+        font-family: "PT Sans";
+        font-weight: bold;
+        color: #909090;
+    }
+}
