@@ -17,23 +17,23 @@ code {
 	font-family: "PT Sans";
 	font-style: italic;
 	font-size: 10;
-	color: white;
-	background: #8f8f8f;
-	border-radius: 8px;
-	border: none;
+	background: #f4f4f4;
+	color: #8f8f8f;
+	border: 1px solid #8f8f8f;
+	border-radius: 14px;
 	margin: 2px;
 
 
 }
 
 .selected{
-	color: #8f8f8f;
-	background: white;
+	background: #8f8f8f;
+	color: #f4f4f4;
 
 }
 
 #tooltip {
-	background: white;
+	background: #f4f4f4;
 	padding: 5px;
 	border-radius: 5px
 }

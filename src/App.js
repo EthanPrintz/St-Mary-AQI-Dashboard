@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import LeftCol from './components/LeftCol';
+import RightCol from './components/RightCol';
 import Map from './components/Map';
 import BarChart from './components/BarChart';
+import SensorCurrentDisplay from './components/SensorCurrentDisplay';
 import { getSensorDataByURL, getSensorDataByParams } from './utils/getSensorData';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.css';
@@ -10,9 +12,9 @@ import { isDOMComponent } from 'react-dom/test-utils';
 
 function App() {
   useEffect(() => {
-    getSensorDataByURL(
-      'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
-    );
+    //getSensorDataByURL(
+    //  'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
+    //);
 	document.getElementById("date-selector-button-0").classList.add("selected")
 	document.getElementById("graph-selector-button-0").classList.add("selected")
 	document.getElementById("graph-selector-button-1").classList.add("selected")
@@ -24,7 +26,8 @@ function App() {
 	const [graphs, setGraphs] = useState([true, true, true, false])
 
 	//#let data = [50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10]
-	let dimensions = [300, 200, 50]
+	let graphdimensions = [window.screen.width*.24, window.screen.width*.07, window.screen.width*.01]
+	let sensordimensions = [window.screen.width*.24, window.screen.width*.12, window.screen.width*.01]
 
 	let date_range = ["24 hours", "3 days", "1 week", "2 weeks"]
 
@@ -71,15 +74,18 @@ function App() {
   return (
     <AppContainer>
 	  {/*<button className="selector-button" onClick={yo}>yo</button>*/}
-	  {date_range.map((date, i) => <button className="selector-button" id={"date-selector-button-" + i} key={i} onClick={() => updateDateRange(i)}> {date} </button>)}
-	  <br/>
-	  {graph_names.map((graph_name, i) => <button className={"selector-button"} id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphSelection(i)}> {graph_name} </button>)}
-	  {graphs[0] && <BarChart data={data} dimensions={dimensions} desc={graph_names[0]}/>}
-	  {graphs[1] && <BarChart data={data} dimensions={dimensions} desc={graph_names[1]}/>}
-	  {graphs[2] && <BarChart data={data} dimensions={dimensions} gray desc={graph_names[2]}/>}
-	  {graphs[3] && <BarChart data={data} dimensions={dimensions} gray desc={graph_names[3]}/>}
 	  {/*<LeftCol />*/}
 	  {/*<Map />*/}
+	  <RightCol>
+	  <SensorCurrentDisplay dimensions={sensordimensions} backleft={52} front={47} backright={47}/>
+	  See Data For: {date_range.map((date, i) => <button className="selector-button" id={"date-selector-button-" + i} key={i} onClick={() => updateDateRange(i)}> {date} </button>)}
+	  <br/>
+	  Toggle Data: {graph_names.map((graph_name, i) => <button className={"selector-button"} id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphSelection(i)}> {graph_name} </button>)}
+	  {graphs[0] && <BarChart data={data} dimensions={graphdimensions} desc={graph_names[0]}/>}
+	  {graphs[1] && <BarChart data={data} dimensions={graphdimensions} desc={graph_names[1]}/>}
+	  {graphs[2] && <BarChart data={data} dimensions={graphdimensions} gray desc={graph_names[2]}/>}
+	  {graphs[3] && <BarChart data={data} dimensions={graphdimensions} gray desc={graph_names[3]}/>}
+	  </RightCol>
     </AppContainer>
   );
 }

@@ -18,14 +18,14 @@ class BarChart extends React.Component {
 		 var tooltip = d3.select("body")
 			.append("div")
 			.attr('id', 'tooltip')
-			.attr('style', 'position: absolute; opacity: 0;')
+			.attr('style', 'position: absolute; opacity: 0; z-index: 4;')
 		 this.tooltip = tooltip
 	 }
 
  }
 
  componentDidUpdate(){
-	 let textHeight = this.margin/2;
+	 let textHeight = this.margin;
 	 let yScale = d3.scaleLinear()
 		.domain([0, 100])
 		.range([this.height - this.margin - textHeight, this.margin])
@@ -55,7 +55,7 @@ class BarChart extends React.Component {
  componentDidMount(){
 	 console.log(this.props.data)
 
-	 let textHeight = this.margin/2;
+	 let textHeight = this.margin;
 
 	 let xScale = d3.scaleLinear()
 		.domain([0, this.props.data.length])
@@ -119,7 +119,7 @@ class BarChart extends React.Component {
 	 .attr("y", this.height-textHeight/4)
 	 .attr("fill", "black")
 	 .text(this.props.desc)
-	 .attr("font-size", textHeight/2)
+	 .attr("font-size", textHeight)
 	 .attr("class", "bar-chart-text")
 
  }
