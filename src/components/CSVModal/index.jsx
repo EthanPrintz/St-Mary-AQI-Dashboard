@@ -4,35 +4,17 @@ import Select from 'react-select';
 import './style.scss';
 import { DISTRICT_MAPPING } from '../../utils/districtMapping';
 
-function SelectSensors() {
-  const options = [
-    { value: 'beep1', label: 'Beep1' },
-    { value: 'beep2', label: 'Beep2' },
-    { value: 'beep3', label: 'Beep3' },
-    { value: 'beep4', label: 'Beep4' },
-    { value: 'beep5', label: 'Beep5' },
-  ];
-
-  return (
-    <div className="selection-container">
-      <div className="selection-title-container">
-        <span className="selection-title">Select Sensors</span>
-      </div>
-      <Select options={options} isMulti name="sensors" />
-    </div>
-  );
-}
-
 function SelectionPill(props) {
   const {
-    dataParameter, state, setState, allowMultiple,
+    dataParameter, state, changeState, allowMultiple,
   } = props;
 
   function handleFetchChange(e) {
     const newState = [...state];
+    const dataChecked = dataParameter.checked;
     if (!allowMultiple) { newState.forEach((data) => data.checked = false); }
-    dataParameter.checked = true;
-    setState(newState);
+    dataParameter.checked = !dataChecked;
+    changeState(newState);
   }
 
   return (
@@ -43,14 +25,13 @@ function SelectionPill(props) {
       role="button"
       tabIndex={0}
     >
-      <span>{dataParameter.type}</span>
+      <span>{dataParameter.value}</span>
     </div>
   );
 }
 
 function QuerySelector(props) {
-  const { queryParamType, queryParams, allowMultiple } = props;
-  const [dataTypes, setDataFetchStatus] = useState(queryParams);
+  const { dataState, setDataState, queryParamType, allowMultiple } = props;
 
   return (
     <div className="selection-container pollutant">
@@ -63,11 +44,11 @@ function QuerySelector(props) {
       </div>
       <div className="horizontal-list-container">
         {
-        dataTypes.map((type) => (
+        dataState.map((type) => (
           <SelectionPill
             dataParameter={type}
-            state={dataTypes}
-            changeState={setDataFetchStatus}
+            state={dataState}
+            changeState={setDataState}
             allowMultiple={allowMultiple}
             index={0}
           />
@@ -88,10 +69,10 @@ function TimespanSelector() {
   const [lastDate, setLastDate] = useState(recentDate);
 
   const [timespans, setTimespan] = useState([
-    { type: '1 Day', checked: true },
-    { type: '1 Week', checked: false },
-    { type: '1 Month', checked: false },
-    { type: '6 Months', checked: false },
+    { value: '1 Day', checked: true },
+    { value: '1 Week', checked: false },
+    { value: '1 Month', checked: false },
+    { value: '6 Months', checked: false },
   ]);
 
   function CustomSelectionPill(props) {
@@ -105,7 +86,7 @@ function TimespanSelector() {
 
       const currentDate = new Date();
       const firstDateOfInterval = new Date();
-      switch (timespan.type) {
+      switch (timespan.value) {
         case '1 Day':
           firstDateOfInterval.setDate(currentDate.getDate() - 1);
           break;
@@ -132,7 +113,7 @@ function TimespanSelector() {
         role="button"
         tabIndex={0}
       >
-        <span>{timespan.type}</span>
+        <span>{timespan.value}</span>
       </div>
     );
   }
@@ -143,6 +124,11 @@ function TimespanSelector() {
     setTimespan(newTimespan);
   }
 
+  function getMaximumEarlyDate(){
+    const maximumEarlyDate = new Date()
+    maximumEarlyDate.setDate(lastDate.getDate() - 1);
+    return maximumEarlyDate.toISOString().slice(0, 10)
+  }
   return (
     <div className="selection-container pollutant">
       <div className="selection-title-container">
@@ -165,7 +151,7 @@ function TimespanSelector() {
           className="date-select"
           type="date"
           value={firstDate.toISOString().slice(0, 10)}
-          max={lastDate.toISOString().slice(0, 10)}
+          max={getMaximumEarlyDate()}
           onChange={(e) => {
             setFirstDate(new Date(e.target.value));
             setNoneChecked();
@@ -189,7 +175,7 @@ function TimespanSelector() {
               setFirstDate(yesterDate);
               const newTimespan = [...timespans];
               newTimespan.forEach((timeType) => { timeType.checked = false; });
-              newTimespan.find((timeType) => timeType.type === '1 Day').checked = true;
+              newTimespan.find((timeType) => timeType.value === '1 Day').checked = true;
               setTimespan(newTimespan);
             }
           }}
@@ -209,23 +195,60 @@ function DividerSVG() {
 function CSVModal(props) {
   const { school } = props;
 
-  const airFactors = [
-    { type: 'PM 2.5', checked: false },
-    { type: 'PM 10', checked: false },
-    { type: 'Temperature', checked: false },
-    { type: 'Humidity', checked: false },
-  ];
+  const [sensorOptions, setSensorOptions] = useState([
+    { value: '90817', checked: false },
+    { value: 'beep2', checked: false },
+    { value: 'beep3', checked: false },
+    { value: 'beep4', checked: false },
+    { value: 'beep5', checked: false },
+    { value: 'beep5', checked: false },
+    { value: 'beep5', checked: false },
+    { value: 'beep5', checked: false },
+    { value: 'beep5', checked: false },
+  ]);
 
-  const intervals = [
-    { type: 'Hour', checked: true },
-    { type: '3 Hours', checked: false },
-    { type: '6 Hours', checked: false },
-    { type: 'Daily', checked: false },
-  ];
+  const [airFactors, setAirFactors] = useState([
+    { value: 'PM 2.5', checked: false },
+    { value: 'PM 10', checked: false },
+    { value: 'Temperature', checked: false },
+    { value: 'Humidity', checked: false },
+  ]);
+
+  const [intervals, setIntervals] = useState([
+    { value: 'Hour', checked: true },
+    { value: '3 Hours', checked: false },
+    { value: '6 Hours', checked: false },
+    { value: 'Daily', checked: false },
+  ]);
 
   // TODO: make scalable so that it's not just st.marys
   const schoolName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === school).name;
 
+  function handleSubmission(e){
+    e.preventDefault();
+    const BASE_URL = "https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv";
+
+    // need validation
+
+
+    const queries = [];
+    const selectedSensors = sensorOptions.filter(item => item.checked).map(item => item.value)
+    const selectedAirFactors = airFactors.filter(item => item.checked).map(item => item.value.toLowerCase().replace(/\s/g, ""))
+    const selectedInterval = intervals.find(item => item.checked)
+
+    // need to get sensorID, not name
+    selectedSensors.forEach((sensor)=>{
+      const parameters = []
+      parameters.push(`location=${sensor}`)
+      selectedAirFactors.forEach((airFactor) => {
+        parameters.push(`parameter=${airFactor}`)
+      })
+      
+      queries.push(`${BASE_URL}${parameters.join('&')}`)
+    })
+    console.log(queries)
+  }
+  
   return (
     <div className="modal-container">
       <form>
@@ -234,23 +257,30 @@ function CSVModal(props) {
           <span className="school-title">{schoolName}</span>
         </div>
         <div className="body-content">
-          <SelectSensors />
-          <DividerSVG />
           <QuerySelector
-            queryParamType="Type(s)"
-            queryParams={airFactors}
+            queryParamType="Sensor(s)"
+            dataState={sensorOptions}
+            setDataState={setSensorOptions}
             allowMultiple
           />
           <DividerSVG />
           <QuerySelector
-            queryParamType="Intervals"
-            queryParams={intervals}
+            queryParamType="Type(s)"
+            dataState={airFactors}
+            setDataState={setAirFactors}
+            allowMultiple
+          />
+          <DividerSVG />
+          <QuerySelector
+            queryParamType="Interval"
+            dataState={intervals}
+            setDataState={setIntervals}
             allowMultiple={false}
           />
           <DividerSVG />
           <TimespanSelector />
           <DividerSVG />
-          <button className="export-csv" type="submit">
+          <button className="export-csv" type="submit" onClick={handleSubmission}>
             Export as CSV
           </button>
         </div>
