@@ -4,13 +4,13 @@ import { readString } from 'react-papaparse';
 // locationId, location, city, coutnry, utc, local, parameter, value, unit, latitutde, longitude
 // 0         , 1       , 2   , 3      , 4  , 5    , 6        , 7    , 8   , 9        , 10
 */
-export const getSensorDataByURL = (url) => {
+export const getSensorDataByURL = async (url) => {
   const response = fetch(url)
     .then((res) => res.text())
     .then((csv) => readString(csv))
     .catch((err) => console.log(err));
 
-  response.then((arr) => {
+  let toReturn = await response.then((arr) => {
     const sensorData = arr.data.slice(1);
     let readings = [];
     const data = sensorData.slice(1);
@@ -44,4 +44,10 @@ export const getSensorDataByURL = (url) => {
     console.log(returnData);
     return returnData;
   });
+	return toReturn;
 };
+
+export const getSensorDataByParams = (url) => {
+	return getSensorDataByURL(url);
+
+}

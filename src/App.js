@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LeftCol from './components/LeftCol';
 import Map from './components/Map';
 import BarChart from './components/BarChart';
-import { getSensorDataByURL } from './utils/getSensorData';
+import { getSensorDataByURL, getSensorDataByParams } from './utils/getSensorData';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './App.css';
 import { isDOMComponent } from 'react-dom/test-utils';
@@ -24,7 +24,7 @@ function App() {
 
 	let date_range = ["24 hours", "3 days", "1 week", "2 weeks"]
 
-	let graph_options = ["PM 2.5", "PM 10", "Temperature", "Humidity"]
+	let graph_names = ["PM 2.5", "PM 10", "Temperature", "Humidity"]
 
 	function updateRange(index){
 		for(let i = 0; i < 4; i++){
@@ -59,8 +59,8 @@ function App() {
 	   else{
 		document.getElementById("graph-selector-button-" + index).classList.add("selected")
 	   }
-	   let temp = graphs
-	   temp[index] = !graphs[index]
+	   let temp = [...graphs]
+	   temp[index] = !temp[index]
 	   setGraphs(temp)
    }
 
@@ -69,8 +69,11 @@ function App() {
 	  {/*<button className="selector-button" onClick={yo}>yo</button>*/}
 	  {date_range.map((date, i) => <button className="selector-button" id={"selector-button-" + i} key={i} onClick={() => updateRange(i)}> {date} </button>)}
 	  <br/>
-	  {graph_options.map((graph_name, i) => <button className="selector-button" id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphRange(i)}> {graph_name} </button>)}
-	  {graph_options.map((graph_name, i) => {graphs[i] && <BarChart data={data} dimensions={dimensions} desc={graph_name}/>})}
+	  {graph_names.map((graph_name, i) => <button className="selector-button" id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphRange(i)}> {graph_name} </button>)}
+	  {graphs[0] && <BarChart data={data} dimensions={dimensions} desc={graph_names[0]}/>}
+	  {graphs[1] && <BarChart data={data} dimensions={dimensions} desc={graph_names[1]}/>}
+	  {graphs[2] && <BarChart data={data} dimensions={dimensions} desc={graph_names[2]}/>}
+	  {graphs[3] && <BarChart data={data} dimensions={dimensions} desc={graph_names[3]}/>}
 	  {/*<LeftCol />*/}
 	  {/*<Map />*/}
     </AppContainer>
