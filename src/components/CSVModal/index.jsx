@@ -4,6 +4,8 @@ import Select from 'react-select';
 import './style.scss';
 import { DISTRICT_MAPPING } from '../../utils/districtMapping';
 
+const TODAY = new Date();
+
 function SelectionPill(props) {
   const {
     dataParameter, state, changeState, allowMultiple,
@@ -59,14 +61,8 @@ function QuerySelector(props) {
   );
 }
 
-function TimespanSelector() {
-  const today = new Date();
-  const farDate = new Date();
-  farDate.setDate(today.getDate() - 1);
-  const recentDate = today;
-
-  const [firstDate, setFirstDate] = useState(farDate);
-  const [lastDate, setLastDate] = useState(recentDate);
+function TimespanSelector(props) {
+  const { firstDate, setFirstDate, lastDate, setLastDate } = props;
 
   const [timespans, setTimespan] = useState([
     { value: '1 Day', checked: true },
@@ -163,7 +159,7 @@ function TimespanSelector() {
           className="date-select"
           type="date"
           value={lastDate.toISOString().slice(0, 10)}
-          max={today.toISOString().slice(0, 10)}
+          max={TODAY.toISOString().slice(0, 10)}
           onChange={(e) => {
             const newDate = new Date(e.target.value);
             setLastDate(newDate);
@@ -221,6 +217,12 @@ function CSVModal(props) {
     { value: 'Daily', checked: false },
   ]);
 
+  const farDate = new Date();
+  farDate.setDate(TODAY.getDate() - 1);
+  const recentDate = TODAY;
+  const [firstDate, setFirstDate] = useState(farDate);
+  const [lastDate, setLastDate] = useState(recentDate);
+
   // TODO: make scalable so that it's not just st.marys
   const schoolName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === school).name;
 
@@ -232,23 +234,26 @@ function CSVModal(props) {
 
 
     const queries = [];
-    const selectedSensors = sensorOptions.filter(item => item.checked).map(item => item.value)
-    const selectedAirFactors = airFactors.filter(item => item.checked).map(item => item.value.toLowerCase().replace(/\s/g, ""))
-    const selectedInterval = intervals.find(item => item.checked)
+    const selectedSensors = sensorOptions.filter(item => item.checked).map(item => item.value);
+    const selectedFirstDate = JSON.stringify(firstDate).replaceAll("\"", "");
+    const selectedLastDate = JSON.stringify(lastDate).replaceAll("\"", "");
+    const selectedAirFactors = airFactors.filter(item => item.checked).map(item => item.value.toLowerCase().replace(/\s/g, ""));
+    const selectedInterval = intervals.find(item => item.checked);
 
     // need to get sensorID, not name
     selectedSensors.forEach((sensor)=>{
-      const parameters = []
-      parameters.push(`location=${sensor}`)
+      const parameters = [];
+      parameters.push(`location=${sensor}`);
       selectedAirFactors.forEach((airFactor) => {
-        parameters.push(`parameter=${airFactor}`)
+        parameters.push(`parameter=${airFactor}`);
       })
-      
-      queries.push(`${BASE_URL}${parameters.join('&')}`)
+      parameters.push(`date_from=${selectedFirstDate}`);
+      parameters.push(`date_to=${selectedLastDate}`);
+
+      queries.push(`${BASE_URL}${parameters.join('&')}`);
     })
-    console.log(queries)
   }
-  
+
   return (
     <div className="modal-container">
       <form>
@@ -278,7 +283,12 @@ function CSVModal(props) {
             allowMultiple={false}
           />
           <DividerSVG />
-          <TimespanSelector />
+          <TimespanSelector 
+            firstDate={firstDate}
+            setFirstDate={setFirstDate}
+            lastDate={lastDate}
+            setLastDate={setLastDate}
+          />
           <DividerSVG />
           <button className="export-csv" type="submit" onClick={handleSubmission}>
             Export as CSV
