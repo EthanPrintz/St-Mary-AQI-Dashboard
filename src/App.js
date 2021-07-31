@@ -15,14 +15,62 @@ function App() {
     );
   }, []);
 
-	let data = [50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10]
+	const [data, setData] = useState([50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10])
+
+	const [graphs, setGraphs] = useState([true, true, true, false])
+
+	//#let data = [50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10]
 	let dimensions = [300, 200, 50]
+
+	let date_range = ["24 hours", "3 days", "1 week", "2 weeks"]
+
+	let graph_options = ["PM 2.5", "PM 10", "Temperature", "Humidity"]
+
+	function updateRange(index){
+		for(let i = 0; i < 4; i++){
+			if(index == i){
+				document.getElementById("selector-button-" + i).classList.add("selected")
+			}
+			else{
+				document.getElementById("selector-button-" + i).classList.remove("selected")
+			}
+
+		}
+		console.log(date_range[index])
+		if(index == 0){
+			setData([50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10])
+		}
+		if(index == 1){
+			setData([70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50])
+		}
+		if(index == 2){
+			setData([20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50, 80])
+		}
+		if(index == 3){
+			setData([90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50, 80, 20])
+		}
+
+	}
+
+   function updateGraphRange(index){
+	   if(graphs[index]){
+		document.getElementById("graph-selector-button-" + index).classList.remove("selected")
+	   }
+	   else{
+		document.getElementById("graph-selector-button-" + index).classList.add("selected")
+	   }
+	   let temp = graphs
+	   temp[index] = !graphs[index]
+	   setGraphs(temp)
+   }
 
   return (
     <AppContainer>
-	  <BarChart data={data} dimensions={dimensions} desc="PM 2.5"/>
-	  <BarChart data={data} dimensions={dimensions} desc="PM 10"/>
-	  <BarChart data={data} dimensions={dimensions} gray desc="Temperature"/>
+	  {/*<button className="selector-button" onClick={yo}>yo</button>*/}
+	  {date_range.map((date, i) => <button className="selector-button" id={"selector-button-" + i} key={i} onClick={() => updateRange(i)}> {date} </button>)}
+	  <br/>
+	  {graph_options.map((graph_name, i) => <button className="selector-button" id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphRange(i)}> {graph_name} </button>)}
+	  {graph_options.map((graph_name, i) => {graphs[i] && <BarChart data={data} dimensions={dimensions} desc={graph_name}/>})}
 	  {/*<LeftCol />*/}
 	  {/*<Map />*/}
     </AppContainer>

@@ -14,14 +14,47 @@ class BarChart extends React.Component {
 	 this.height= this.props.dimensions[1]
 	 this.margin = this.props.dimensions[2]
  }
+
+ componentDidUpdate(){
+	 let textHeight = this.margin/2;
+	 let yScale = d3.scaleLinear()
+		.domain([0, 100])
+		.range([this.height - this.margin - textHeight, this.margin])
+
+
+	 let svg = d3.select(this.myRef.current)
+	 console.log(this.props.data)
+
+	 svg.selectAll(".rect")
+	 .data(this.props.data)
+	 .transition()
+     .duration(1000)
+	 .attr("height", (d) => yScale(100-d))
+	 .attr("y", (d) => yScale(d))
+	 .attr("fill", (d) => {
+		 if(this.props.gray){
+			 return "#909090";
+		 }
+		 else{
+			 return d < 75 ? "#6CBE44" : "#F1C510"
+		 }
+	 })
+
+ }
+
+
  componentDidMount(){
+	 console.log(this.props.data)
+
+	 let textHeight = this.margin/2;
+
 	 let xScale = d3.scaleLinear()
 		.domain([0, this.props.data.length])
 		.range([0, this.width])
 
 	 let yScale = d3.scaleLinear()
 		.domain([0, 100])
-		.range([this.height - this.margin, this.margin])
+		.range([this.height - this.margin - textHeight, this.margin])
 
 	 let svg = d3.select(this.myRef.current)
 		.append("svg")
@@ -35,7 +68,7 @@ class BarChart extends React.Component {
 	 .attr("x", (d,i) => xScale(i))
 	 .attr("height", (d) => yScale(100-d))
 	 .attr("y", (d) => yScale(d))
-	 .attr("width", this.width/this.props.data.length-1)
+	 .attr("width", this.width/this.props.data.length-3)
 	 .attr("fill", (d) => {
 		 if(this.props.gray){
 			 return "#909090";
@@ -45,13 +78,16 @@ class BarChart extends React.Component {
 		 }
 	 })
 	 .attr("rx", this.width/this.props.data.length/3)
+	 .attr("class", "rect")
 
 	 console.log(this.props.desc)
 	 svg.append("text")
 	 .attr("x", 0)
-	 .attr("y", this.height)
+	 .attr("y", this.height-textHeight/4)
 	 .attr("fill", "black")
 	 .text(this.props.desc)
+	 .attr("font-size", textHeight/2)
+	 .attr("class", "bar-chart-text")
 
  }
  render(){
