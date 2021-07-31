@@ -13,6 +13,15 @@ class BarChart extends React.Component {
 	 this.width = this.props.dimensions[0]
 	 this.height= this.props.dimensions[1]
 	 this.margin = this.props.dimensions[2]
+
+	 if(!document.getElementById("tooltip")){
+		 var tooltip = d3.select("body")
+			.append("div")
+			.attr('id', 'tooltip')
+			.attr('style', 'position: absolute; opacity: 0;')
+		 this.tooltip = tooltip
+	 }
+
  }
 
  componentDidUpdate(){
@@ -79,6 +88,30 @@ class BarChart extends React.Component {
 	 })
 	 .attr("rx", this.width/this.props.data.length/3)
 	 .attr("class", "rect")
+	 .on('mouseover', function(event, d) {
+		 this.tooltip = d3.select("#tooltip")
+
+		this.tooltip
+			.transition()
+			.duration(80)
+			.style('display', 'block')
+			.style('opacity', 1)
+			 .text(d + " AQ")
+			.style('left', (event.pageX+15) + 'px')
+			.style('top', (event.pageY-15) + 'px')
+			.transition()
+			.duration(3000)
+			.style('opacity', 0)
+			.transition()
+			.delay(1000)
+			.style("display", "none")
+	})
+	.on('mouseout', function(e) {
+		this.tooltip
+			.style('opacity', 0)
+			.style('display', 'none')
+	})
+	 
 
 	 console.log(this.props.desc)
 	 svg.append("text")

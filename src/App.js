@@ -13,6 +13,10 @@ function App() {
     getSensorDataByURL(
       'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
     );
+	document.getElementById("date-selector-button-0").classList.add("selected")
+	document.getElementById("graph-selector-button-0").classList.add("selected")
+	document.getElementById("graph-selector-button-1").classList.add("selected")
+	document.getElementById("graph-selector-button-2").classList.add("selected")
   }, []);
 
 	const [data, setData] = useState([50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10])
@@ -26,17 +30,16 @@ function App() {
 
 	let graph_names = ["PM 2.5", "PM 10", "Temperature", "Humidity"]
 
-	function updateRange(index){
+	function updateDateRange(index){
 		for(let i = 0; i < 4; i++){
 			if(index == i){
-				document.getElementById("selector-button-" + i).classList.add("selected")
+				document.getElementById("date-selector-button-" + i).classList.add("selected")
 			}
 			else{
-				document.getElementById("selector-button-" + i).classList.remove("selected")
+				document.getElementById("date-selector-button-" + i).classList.remove("selected")
 			}
 
 		}
-		console.log(date_range[index])
 		if(index == 0){
 			setData([50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10])
 		}
@@ -52,7 +55,7 @@ function App() {
 
 	}
 
-   function updateGraphRange(index){
+   function updateGraphSelection(index){
 	   if(graphs[index]){
 		document.getElementById("graph-selector-button-" + index).classList.remove("selected")
 	   }
@@ -64,16 +67,17 @@ function App() {
 	   setGraphs(temp)
    }
 
+
   return (
     <AppContainer>
 	  {/*<button className="selector-button" onClick={yo}>yo</button>*/}
-	  {date_range.map((date, i) => <button className="selector-button" id={"selector-button-" + i} key={i} onClick={() => updateRange(i)}> {date} </button>)}
+	  {date_range.map((date, i) => <button className="selector-button" id={"date-selector-button-" + i} key={i} onClick={() => updateDateRange(i)}> {date} </button>)}
 	  <br/>
-	  {graph_names.map((graph_name, i) => <button className="selector-button" id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphRange(i)}> {graph_name} </button>)}
+	  {graph_names.map((graph_name, i) => <button className={"selector-button"} id={"graph-selector-button-" + i} key={i} onClick={() => updateGraphSelection(i)}> {graph_name} </button>)}
 	  {graphs[0] && <BarChart data={data} dimensions={dimensions} desc={graph_names[0]}/>}
 	  {graphs[1] && <BarChart data={data} dimensions={dimensions} desc={graph_names[1]}/>}
-	  {graphs[2] && <BarChart data={data} dimensions={dimensions} desc={graph_names[2]}/>}
-	  {graphs[3] && <BarChart data={data} dimensions={dimensions} desc={graph_names[3]}/>}
+	  {graphs[2] && <BarChart data={data} dimensions={dimensions} gray desc={graph_names[2]}/>}
+	  {graphs[3] && <BarChart data={data} dimensions={dimensions} gray desc={graph_names[3]}/>}
 	  {/*<LeftCol />*/}
 	  {/*<Map />*/}
     </AppContainer>
