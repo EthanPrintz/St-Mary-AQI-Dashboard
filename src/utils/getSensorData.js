@@ -31,17 +31,22 @@ export const getSensorDataByURL = (url) => {
       }
     });
 
-    // })
-
-    const returnData = {
+    return {
       locationId: sensorData[1][0],
       locationString: sensorData[1][1],
       latitude: sensorData[1][9],
       longitutde: sensorData[1][10],
       readings,
     };
-
-    console.log(returnData);
-    return returnData;
   });
+};
+
+export const getLiveSensorData = async () => {
+  // Set URL to query for live AQI data
+  const liveQueryURL =
+    // 'https://nqyzh7zcib.execute-api.us-east-1.amazonaws.com/prod/latest';
+    'https://utbo5or9sk.execute-api.us-east-1.amazonaws.com/dev/latest';
+  const response = await fetch(liveQueryURL);
+  const json = await response.json();
+  return json.smchdSensors.data;
 };

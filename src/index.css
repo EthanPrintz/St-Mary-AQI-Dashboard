@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.selector-button {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-size: 10;
+  background: #f4f4f4;
+  color: #8f8f8f;
+  border: 1px solid #8f8f8f;
+  border-radius: 14px;
+  margin: 2px;
+}
+
+.selected {
+  background: #8f8f8f;
+  color: #f4f4f4;
+}
+
+#tooltip {
+  background: #f4f4f4;
+  padding: 5px;
+  border-radius: 5px;
+}

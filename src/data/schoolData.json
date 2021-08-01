@@ -2,8 +2,8 @@
 		{
 			"id": 1,
 			"name": "Benjamin Banneker Elementary School",
-			"short_name": "BES",
-			"category": "elementary",
+			"abbreviation": "BES",
+			"category": "Elementary",
 			"lat": 38.3297214,
 			"long": -76.6758535,
 			"sensors": [
@@ -24,8 +24,8 @@
 		{
 			"id": 2,
 			"name": "Captain Walter Francis Duke Elementary School",
-			"short_name": "CWFD",
-			"category": "elementary",
+			"abbreviation": "CWFD",
+			"category": "Elementary",
 			"lat": 38.3144394,
 			"long": -76.6363073,
 			"sensors": [
@@ -42,8 +42,8 @@
 		{
 			"id": 3,
 			"name": "Dynard Elementary School",
-			"short_name": "CWFD",
-			"category": "elementary",
+			"abbreviation": "CWFD",
+			"category": "Elementary",
 			"lat": 38.3140916,
 			"long": -76.7591032,
 			"sensors": [
@@ -57,6 +57,178 @@
 				},
 				{
 					"id": 93021,
+					"name": "Front Sensor"
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "Evergreen Elementary School",
+			"abbreviation": "EES",
+			"category": "Elementary",
+			"lat": 38.2993082,
+			"long": -76.5633583,
+			"sensors": [
+				{
+					"id": 92437,
+					"name": "Front Left Sensor"
+				},
+				{
+					"id": 92427,
+					"name": "Front Right Sensor"
+				}
+			]
+		},
+		{
+			"id": 5,
+			"name": "George Washington Carver Elementary School",
+			"abbreviation": "GWCES",
+			"category": "Elementary",
+			"lat": 38.2497056,
+			"long": -76.4798641,
+			"sensors": [
+				{
+					"id": 93019,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 90589,
+					"name": "Right Side Sensor"
+				},
+				{
+					"id": 85659,
+					"name": "Front Sensor"
+				}
+			]
+		},
+		{
+			"id": 6,
+			"name": "Green Holly Elementary School",
+			"abbreviation": "GHES",
+			"category": "Elementary",
+			"lat": 38.2944748,
+			"long": -76.4825953,
+			"sensors": [
+				{
+					"id": 90687,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 92701,
+					"name": "Front Right Sensor"
+				},
+				{
+					"id": 85473,
+					"name": "Front Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "Greenview Knolls School Age Center",
+			"abbreviation": "GKSAC",
+			"category": "Elementary",
+			"lat": 38.2800766,
+			"long": -76.4930985,
+			"sensors": [
+				{
+					"id": 90647,
+					"name": "Right Sensor"
+				},
+				{
+					"id": 92559,
+					"name": "Front Sensor"
+				},
+				{
+					"id": 92325,
+					"name": "Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 8,
+			"name": "Hollywood Elementary School",
+			"abbreviation": "HES",
+			"category": "Elementary",
+			"lat": 38.3373834,
+			"long": -76.5421879,
+			"sensors": [
+				{
+					"id": 92833,
+					"name": "Front Right Sensor"
+				},
+				{
+					"id": 90849,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 85455,
+					"name": "Front Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 9,
+			"name": "Leonardtown Elementary School",
+			"abbreviation": "LES",
+			"category": "Elementary",
+			"lat": 38.2967609,
+			"long": -76.6392651,
+			"sensors": [
+				{
+					"id": 90645,
+					"name": "Front Left Sensor"
+				},
+				{
+					"id": 92745,
+					"name": "Front Right Sensor"
+				},
+				{
+					"id": 83855,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 10,
+			"name": "Lettie M Dent Elementary School",
+			"abbreviation": "LES",
+			"category": "Elementary",
+			"lat": 38.4743607,
+			"long": -76.7676672,
+			"sensors": [
+				{
+					"id": 92271,
+					"name": "Front Sensor"
+				},
+				{
+					"id": 91277,
+					"name": "Side Sensor"
+				},
+				{
+					"id": 92885,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 11,
+			"name": "Lexington Park Elementary School",
+			"abbreviation": "LPES",
+			"category": "Elementary",
+			"lat": 38.3945035,
+			"long": -76.6464347,
+			"sensors": [
+				{
+					"id": 92281,
+					"name": "Back Sensor"
+				},
+				{
+					"id": 90881,
+					"name": "Left Side Sensor"
+				},
+				{
+					"id": 92245,
 					"name": "Front Sensor"
 				}
 			]
