@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import { DISTRICT_MAPPING } from '../../utils/districtMapping';
 import QuerySelector from './QuerySelector';
 import TimespanSelector from './TimespanSelector';
 import DividerSVG from './DividerSVG';
+import axios from 'axios';
 
 const TODAY = new Date();
 function CSVModal(props) {
   const { school } = props;
 
   const [sensorOptions, setSensorOptions] = useState([
-    { value: '90817', checked: false },
+    { value: '225029', checked: false },
     { value: 'beep2', checked: false },
     { value: 'beep3', checked: false },
     { value: 'beep4', checked: false },
-    { value: 'beep5', checked: false },
-    { value: 'beep5', checked: false },
-    { value: 'beep5', checked: false },
-    { value: 'beep5', checked: false },
-    { value: 'beep5', checked: false },
   ]);
 
   const [airFactors, setAirFactors] = useState([
@@ -42,14 +38,22 @@ function CSVModal(props) {
   const [firstDate, setFirstDate] = useState(farDate);
   const [lastDate, setLastDate] = useState(recentDate);
 
+  // validation for call to retrieve csv
+  const [ableToGetCSV, setAbleToGetCSV] = useState(false);
+  useEffect(()=>{
+    const schoolChosen = sensorOptions.some((sensor) => sensor.checked);
+    const airFactorChosen = airFactors.some((airFactor) => airFactor.checked);
+
+    setAbleToGetCSV(airFactorChosen && schoolChosen)
+    console.log(ableToGetCSV)
+  }, [sensorOptions, airFactors, ableToGetCSV]);
+
   // TODO: make scalable so that it's not just st.marys
   const schoolName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === school).name;
 
-  function handleSubmission(e) {
+  async function handleSubmission(e) {
     e.preventDefault();
-    const BASE_URL = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv';
-
-    // need validation
+    const BASE_URL = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&';
 
     const queries = [];
     const selectedSensors = sensorOptions.filter((item) => item.checked).map((item) => item.value);
@@ -72,6 +76,9 @@ function CSVModal(props) {
     });
 
     console.log(queries);
+
+    const response = await axios.get(queries[0]);
+    console.log(response);
   }
 
   return (
@@ -111,7 +118,7 @@ function CSVModal(props) {
             today={TODAY}
           />
           <DividerSVG />
-          <button className="export-csv" type="submit" onClick={handleSubmission}>
+          <button className={`export-csv ${ableToGetCSV ? "" : "disabled"}`} type="submit" onClick={handleSubmission} disabled={!ableToGetCSV}>
             Export as CSV
           </button>
         </div>
