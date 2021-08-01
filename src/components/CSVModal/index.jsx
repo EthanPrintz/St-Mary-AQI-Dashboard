@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import { DISTRICT_MAPPING } from '../../utils/districtMapping';
-import QuerySelector from './QuerySelector';
+import ParamSelector from './ParamSelector';
 import TimespanSelector from './TimespanSelector';
 import DividerSVG from './DividerSVG';
 import axios from 'axios';
@@ -89,21 +89,21 @@ function CSVModal(props) {
           <span className="school-title">{schoolName}</span>
         </div>
         <div className="body-content">
-          <QuerySelector
+          <ParamSelector
             queryParamType="Sensor(s)"
             dataState={sensorOptions}
             setDataState={setSensorOptions}
             allowMultiple
           />
           <DividerSVG />
-          <QuerySelector
+          <ParamSelector
             queryParamType="Type(s)"
             dataState={airFactors}
             setDataState={setAirFactors}
             allowMultiple
           />
           <DividerSVG />
-          <QuerySelector
+          <ParamSelector
             queryParamType="Interval"
             dataState={intervals}
             setDataState={setIntervals}

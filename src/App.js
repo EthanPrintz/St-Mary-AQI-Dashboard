@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LeftCol from "./components/LeftCol";
@@ -9,6 +10,19 @@ import CSVModal from "./components/CSVModal";
 import { getSensorDataByURL } from "./utils/getSensorData";
 import axios from "axios";
 import "./App.css";
+=======
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import LeftCol from './components/LeftCol';
+import RightModal from './components/RightModal';
+import Map from './components/Map';
+import BarChart from './components/RightModal/BarChart';
+import SensorCurrentDisplay from './components/SensorCurrentDisplay';
+import CSVModal from './components/CSVModal';
+import { getSensorDataByURL } from './utils/getSensorData';
+import axios from 'axios';
+import './App.css';
+>>>>>>> 3becee7 (add right modal)
 
 function App() {
   let date_range = ["24 hours", "3 days", "1 week", "2 weeks"];
@@ -151,9 +165,10 @@ function App() {
 
   return (
     <AppContainer>
-      {/*<LeftCol />*/}
-      {/*<Map />*/}
-      <RightModal>
+      <LeftCol />
+      <Map />
+      <RightModal />
+      {/* <RightModal>
         <SensorCurrentDisplay
           dimensions={sensordimensions}
           backleft={52}
@@ -215,7 +230,7 @@ function App() {
             desc={graph_names[3]}
           />
         )}
-      </RightModal>
+      </RightModal> */}
     </AppContainer>
   );
 }
