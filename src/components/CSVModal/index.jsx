@@ -1,193 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 import './style.scss';
 import { DISTRICT_MAPPING } from '../../utils/districtMapping';
+import QuerySelector from './QuerySelector';
+import TimespanSelector from './TimespanSelector';
+import DividerSVG from './DividerSVG';
 
 const TODAY = new Date();
-
-function SelectionPill(props) {
-  const {
-    dataParameter, state, changeState, allowMultiple,
-  } = props;
-
-  function handleFetchChange(e) {
-    const newState = [...state];
-    const dataChecked = dataParameter.checked;
-    if (!allowMultiple) { newState.forEach((data) => data.checked = false); }
-    dataParameter.checked = !dataChecked;
-    changeState(newState);
-  }
-
-  return (
-    <div
-      className={`selection-item${dataParameter.checked ? ' checked' : ''}`}
-      onClick={handleFetchChange}
-      onKeyPress={handleFetchChange}
-      role="button"
-      tabIndex={0}
-    >
-      <span>{dataParameter.value}</span>
-    </div>
-  );
-}
-
-function QuerySelector(props) {
-  const { dataState, setDataState, queryParamType, allowMultiple } = props;
-
-  return (
-    <div className="selection-container pollutant">
-      <div className="selection-title-container">
-        <span className="selection-title">
-          Select
-          {' '}
-          {queryParamType}
-        </span>
-      </div>
-      <div className="horizontal-list-container">
-        {
-        dataState.map((type) => (
-          <SelectionPill
-            dataParameter={type}
-            state={dataState}
-            changeState={setDataState}
-            allowMultiple={allowMultiple}
-            index={0}
-          />
-        ))
-      }
-      </div>
-    </div>
-  );
-}
-
-function TimespanSelector(props) {
-  const { firstDate, setFirstDate, lastDate, setLastDate } = props;
-
-  const [timespans, setTimespan] = useState([
-    { value: '1 Day', checked: true },
-    { value: '1 Week', checked: false },
-    { value: '1 Month', checked: false },
-    { value: '6 Months', checked: false },
-  ]);
-
-  function CustomSelectionPill(props) {
-    const { timespan } = props;
-
-    function handleTimespanChange(e) {
-      const newTimespan = [...timespans];
-      newTimespan.forEach((data) => { data.checked = false; });
-      timespan.checked = true;
-      setTimespan(newTimespan);
-
-      const currentDate = new Date();
-      const firstDateOfInterval = new Date();
-      switch (timespan.value) {
-        case '1 Day':
-          firstDateOfInterval.setDate(currentDate.getDate() - 1);
-          break;
-        case '1 Week':
-          firstDateOfInterval.setDate(currentDate.getDate() - 7);
-          break;
-        case '1 Month':
-          firstDateOfInterval.setMonth(currentDate.getMonth() - 1);
-          break;
-        case '6 Months':
-          firstDateOfInterval.setMonth(currentDate.getMonth() - 6);
-          break;
-        default:
-      }
-      setFirstDate(firstDateOfInterval);
-      setLastDate(currentDate);
-    }
-
-    return (
-      <div
-        className={`selection-item${timespan.checked ? ' checked' : ''}`}
-        onClick={handleTimespanChange}
-        onKeyPress={handleTimespanChange}
-        role="button"
-        tabIndex={0}
-      >
-        <span>{timespan.value}</span>
-      </div>
-    );
-  }
-
-  function setNoneChecked() {
-    const newTimespan = [...timespans];
-    newTimespan.forEach((data) => { data.checked = false; });
-    setTimespan(newTimespan);
-  }
-
-  function getMaximumEarlyDate(){
-    const maximumEarlyDate = new Date()
-    maximumEarlyDate.setDate(lastDate.getDate() - 1);
-    return maximumEarlyDate.toISOString().slice(0, 10)
-  }
-  return (
-    <div className="selection-container pollutant">
-      <div className="selection-title-container">
-        <span className="selection-title">
-          Select Timespan
-        </span>
-      </div>
-      <div className="horizontal-list-container">
-        {
-          timespans.map((timespan) => (
-            <CustomSelectionPill
-              timespan={timespan}
-            />
-          ))
-        }
-      </div>
-      <div className="horizontal-list-container dates">
-        <input
-          id="last-date"
-          className="date-select"
-          type="date"
-          value={firstDate.toISOString().slice(0, 10)}
-          max={getMaximumEarlyDate()}
-          onChange={(e) => {
-            setFirstDate(new Date(e.target.value));
-            setNoneChecked();
-          }}
-        />
-        <span> to </span>
-        <input
-          id="recent-date"
-          className="date-select"
-          type="date"
-          value={lastDate.toISOString().slice(0, 10)}
-          max={TODAY.toISOString().slice(0, 10)}
-          onChange={(e) => {
-            const newDate = new Date(e.target.value);
-            setLastDate(newDate);
-            setNoneChecked();
-
-            if (firstDate.getTime() > newDate.getTime()) {
-              const yesterDate = new Date(newDate);
-              yesterDate.setDate(newDate.getDate() - 1);
-              setFirstDate(yesterDate);
-              const newTimespan = [...timespans];
-              newTimespan.forEach((timeType) => { timeType.checked = false; });
-              newTimespan.find((timeType) => timeType.value === '1 Day').checked = true;
-              setTimespan(newTimespan);
-            }
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function DividerSVG() {
-  return (
-    <svg width="10" height="25" viewBox="0 0 10 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 34L5 5" stroke="#EAEAEA" strokeWidth="9" strokeLinecap="square" />
-    </svg>
-  );
-}
 function CSVModal(props) {
   const { school } = props;
 
@@ -226,32 +45,33 @@ function CSVModal(props) {
   // TODO: make scalable so that it's not just st.marys
   const schoolName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === school).name;
 
-  function handleSubmission(e){
+  function handleSubmission(e) {
     e.preventDefault();
-    const BASE_URL = "https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv";
+    const BASE_URL = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv';
 
     // need validation
 
-
     const queries = [];
-    const selectedSensors = sensorOptions.filter(item => item.checked).map(item => item.value);
-    const selectedFirstDate = JSON.stringify(firstDate).replaceAll("\"", "");
-    const selectedLastDate = JSON.stringify(lastDate).replaceAll("\"", "");
-    const selectedAirFactors = airFactors.filter(item => item.checked).map(item => item.value.toLowerCase().replace(/\s/g, ""));
-    const selectedInterval = intervals.find(item => item.checked);
+    const selectedSensors = sensorOptions.filter((item) => item.checked).map((item) => item.value);
+    const selectedFirstDate = JSON.stringify(firstDate).replaceAll('"', '');
+    const selectedLastDate = JSON.stringify(lastDate).replaceAll('"', '');
+    const selectedAirFactors = airFactors.filter((item) => item.checked).map((item) => item.value.toLowerCase().replace(/\s/g, ''));
+    const selectedInterval = intervals.find((item) => item.checked);
 
     // need to get sensorID, not name
-    selectedSensors.forEach((sensor)=>{
+    selectedSensors.forEach((sensor) => {
       const parameters = [];
       parameters.push(`location=${sensor}`);
       selectedAirFactors.forEach((airFactor) => {
         parameters.push(`parameter=${airFactor}`);
-      })
+      });
       parameters.push(`date_from=${selectedFirstDate}`);
       parameters.push(`date_to=${selectedLastDate}`);
 
       queries.push(`${BASE_URL}${parameters.join('&')}`);
-    })
+    });
+
+    console.log(queries);
   }
 
   return (
@@ -283,11 +103,12 @@ function CSVModal(props) {
             allowMultiple={false}
           />
           <DividerSVG />
-          <TimespanSelector 
+          <TimespanSelector
             firstDate={firstDate}
             setFirstDate={setFirstDate}
             lastDate={lastDate}
             setLastDate={setLastDate}
+            today={TODAY}
           />
           <DividerSVG />
           <button className="export-csv" type="submit" onClick={handleSubmission}>
