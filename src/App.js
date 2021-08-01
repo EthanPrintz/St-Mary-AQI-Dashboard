@@ -93,9 +93,6 @@ function App() {
 
   return (
     <AppContainer>
-      <BarChart data={data} dimensions={graphdimensions} desc="PM 2.5" />
-      <BarChart data={data} dimensions={graphdimensions} desc="PM 10" />
-      <BarChart data={data} dimensions={graphdimensions} gray desc="Temperature" />
       <LeftCol />
       <Map />
       <RightModal>
