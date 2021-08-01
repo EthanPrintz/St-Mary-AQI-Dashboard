@@ -25,22 +25,73 @@ class BarChart extends React.Component {
   }
 
   componentDidUpdate() {
+	console.log("updated")
     let textHeight = this.margin;
     let yScale = d3
       .scaleLinear()
       .domain([0, 100])
       .range([this.height - this.margin - textHeight, this.margin]);
 
-    let svg = d3.select(this.myRef.current);
+    let xScale = d3
+      .scaleLinear()
+      .domain([0, this.props.data.length])
+      .range([this.margin, this.width-this.margin]);
+
+    //let svg = d3.select(this.myRef.current);
+	let svg = this.svg
     console.log(this.props.data);
 
-    svg
+    let rects = svg
       .selectAll('.rect')
       .data(this.props.data)
+
+	console.log(rects)
+
+
+	rects.enter()
+      .append('rect')
+      .attr('class', 'rect')
+      .attr('height', (d) => yScale(100))
+      .attr('width', this.width / this.props.data.length - 3)
+      .attr('x', (d, i) => xScale(i))
+      .attr('y', (d) => yScale(0))
+      .attr('rx', this.width / this.props.data.length / 3)
+      .attr('fill', (d) => {
+        if (this.props.gray) {
+          return '#909090';
+        } else {
+          return d < 75 ? '#6CBE44' : '#F1C510';
+        }
+      })
+      .on('mouseover', function (event, d) {
+        this.tooltip = d3.select('#tooltip');
+
+        this.tooltip
+          .transition()
+          .duration(80)
+          .style('display', 'block')
+          .style('opacity', 1)
+          .text(d + ' AQ')
+          .style('left', event.pageX + 15 + 'px')
+          .style('top', event.pageY - 15 + 'px')
+          .transition()
+          .duration(3000)
+          .style('opacity', 0)
+          .transition()
+          .delay(1000)
+          .style('display', 'none');
+      })
+      .on('mouseout', function (e) {
+        this.tooltip.style('opacity', 0).style('display', 'none');
+      })
+	  .merge(rects)
       .transition()
       .duration(1000)
       .attr('height', (d) => yScale(100 - d))
+      .attr('width', this.width / this.props.data.length - 3)
+      .attr('x', (d, i) => xScale(i))
       .attr('y', (d) => yScale(d))
+      .attr('rx', this.width / this.props.data.length / 3)
       .attr('fill', (d) => {
         if (this.props.gray) {
           return '#909090';
@@ -58,7 +109,7 @@ class BarChart extends React.Component {
     let xScale = d3
       .scaleLinear()
       .domain([0, this.props.data.length])
-      .range([0, this.width]);
+      .range([this.margin, this.width-this.margin]);
 
     let yScale = d3
       .scaleLinear()
@@ -70,6 +121,8 @@ class BarChart extends React.Component {
       .append('svg')
       .attr('width', this.width)
       .attr('height', this.height);
+	
+	this.svg = svg;
 
     svg
       .selectAll('.rect')
@@ -114,7 +167,7 @@ class BarChart extends React.Component {
     console.log(this.props.desc);
     svg
       .append('text')
-      .attr('x', 0)
+      .attr('x', this.margin)
       .attr('y', this.height - textHeight / 4)
       .attr('fill', 'black')
       .text(this.props.desc)

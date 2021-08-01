@@ -7,11 +7,66 @@ import BarChart from './components/BarChart';
 import SensorCurrentDisplay from './components/SensorCurrentDisplay';
 import CSVModal from './components/CSVModal';
 import { getSensorDataByURL } from './utils/getSensorData';
+import axios from 'axios';
 import './App.css';
 
 function App() {
+
+  let date_range = ['24 hours', '3 days', '1 week', '2 weeks'];
+
+  let graph_names = ['PM 25', 'PM 10', 'Temperature', 'Humidity'];
+
+    const [sensorAvg, getSensorAvg] = useState([0, 0, 0]);
+
+    const [pm25data, setpm25Data] = useState([]);
+
+    const [pm10data, setpm10Data] = useState([]);
+    async function updateSensorData() {
+		const BASE_URL = 'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=json&';
+
+		const queries = [];
+		const selectedSensors = ['224756'];
+		const TODAY = new Date()
+		const selectedFirstDate = JSON.stringify(TODAY.getDate() - 1).replaceAll('"', '');
+		const selectedLastDate = JSON.stringify(TODAY).replaceAll('"', '');
+		const selectedAirFactors = graph_names.map((item) => item.toLowerCase().replace(/\s/g, ''));;
+
+		// need to get sensorID, not name
+		selectedSensors.forEach((sensor) => {
+		  const parameters = [];
+		  parameters.push(`location=${sensor}`);
+		  selectedAirFactors.forEach((airFactor) => {
+			parameters.push(`parameter=${airFactor}`);
+		  });
+		  parameters.push(`date_from=${selectedFirstDate}`);
+		  parameters.push(`date_to=${selectedLastDate}`);
+
+		  queries.push(`${BASE_URL}${parameters.join('&')}`);
+		});
+
+		console.log(queries);
+
+		const response = axios.get(queries[0]);
+
+		response.then((raw)=>{
+			let data = raw.data.results
+
+			//pm25
+			let pm25 = data.filter((item) => item.parameter == "pm25").map((item) => 10* item.value)
+			//pm10
+			let pm10 = data.filter((item) => item.parameter == "pm10").map((item) => 10* item.value)
+
+			setpm25Data(pm25);
+			setpm10Data(pm10);
+
+			return [pm25, pm10];
+		})
+
+	  }
+
+
   useEffect(() => {
-    console.log(getSensorDataByURL());
+    //console.log(getSensorDataByURL());
 
     document.getElementById('date-selector-button-0').classList.add('selected');
     document
@@ -23,11 +78,13 @@ function App() {
     document
       .getElementById('graph-selector-button-2')
       .classList.add('selected');
-    const data = getSensorDataByURL(
-      'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
-    );
-    console.log(data);
+    //const data = getSensorDataByURL(
+    //  'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
+    //);
+	updateSensorData()
+
   }, []);
+
 
   const [data, setData] = useState([
     50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10,
@@ -46,9 +103,6 @@ function App() {
     window.screen.width * 0.01,
   ];
 
-  let date_range = ['24 hours', '3 days', '1 week', '2 weeks'];
-
-  let graph_names = ['PM 2.5', 'PM 10', 'Temperature', 'Humidity'];
 
   function updateDateRange(index) {
     for (let i = 0; i < 4; i++) {
@@ -93,8 +147,8 @@ function App() {
 
   return (
     <AppContainer>
-      <LeftCol />
-      <Map />
+	  {/*<LeftCol />*/}
+	  {/*<Map />*/}
       <RightModal>
         <SensorCurrentDisplay
           dimensions={sensordimensions}
@@ -129,14 +183,14 @@ function App() {
         ))}
         {graphs[0] && (
           <BarChart
-            data={data}
+            data={pm25data}
             dimensions={graphdimensions}
             desc={graph_names[0]}
           />
         )}
         {graphs[1] && (
           <BarChart
-            data={data}
+            data={pm10data}
             dimensions={graphdimensions}
             desc={graph_names[1]}
           />
