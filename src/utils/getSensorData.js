@@ -31,8 +31,6 @@ export const getSensorDataByURL = (url) => {
       }
     });
 
-    // })
-
     const returnData = {
       locationId: sensorData[1][0],
       locationString: sensorData[1][1],

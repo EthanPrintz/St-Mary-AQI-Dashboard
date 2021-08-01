@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 //https://medium.com/@varvara.munday/d3-in-react-a-step-by-step-tutorial-cba33ce000ce
 import React from 'react';
 import * as d3 from 'd3';
