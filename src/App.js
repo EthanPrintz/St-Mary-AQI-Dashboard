@@ -147,16 +147,10 @@ function App() {
 
   return (
     <AppContainer>
-<<<<<<< Updated upstream
-	  {/*<LeftCol />*/}
-	  {/*<Map />*/}
-      <RightModal>
-=======
       <LeftCol />
       <Map />
       <RightModal />
       {/* <RightModal>
->>>>>>> Stashed changes
         <SensorCurrentDisplay
           dimensions={sensordimensions}
           backleft={52}
