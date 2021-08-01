@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LeftCol from './components/LeftCol';
 import RightModal from './components/RightModal';
 import Map from './components/Map';
-import BarChart from './components/BarChart';
+import BarChart from './components/RightModal/BarChart';
 import SensorCurrentDisplay from './components/SensorCurrentDisplay';
 import CSVModal from './components/CSVModal';
 import { getSensorDataByURL } from './utils/getSensorData';
@@ -116,16 +116,16 @@ function App() {
           .classList.remove('selected');
       }
     }
-    if (index == 0) {
+    if (index === 0) {
       setData([50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10]);
     }
-    if (index == 1) {
+    if (index === 1) {
       setData([70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50]);
     }
-    if (index == 2) {
+    if (index === 2) {
       setData([20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50, 80]);
     }
-    if (index == 3) {
+    if (index === 3) {
       setData([90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 50, 80, 20]);
     }
   }
@@ -147,9 +147,16 @@ function App() {
 
   return (
     <AppContainer>
+<<<<<<< Updated upstream
 	  {/*<LeftCol />*/}
 	  {/*<Map />*/}
       <RightModal>
+=======
+      <LeftCol />
+      <Map />
+      <RightModal />
+      {/* <RightModal>
+>>>>>>> Stashed changes
         <SensorCurrentDisplay
           dimensions={sensordimensions}
           backleft={52}
@@ -211,7 +218,7 @@ function App() {
             desc={graph_names[3]}
           />
         )}
-      </RightModal>
+      </RightModal> */}
     </AppContainer>
   );
 }
