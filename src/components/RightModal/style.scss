@@ -33,7 +33,7 @@
     padding: 2px;
     border-radius: 10px;
 
-    &.horizontal{
+    &.horizontal {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -42,8 +42,8 @@
 
 .selection-title-container {
     padding-bottom: 5px;
-    
-    &.horizontal{
+
+    &.horizontal {
         flex-basis: 40%;
         float: right;
     }
@@ -62,12 +62,12 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    
-    &.horizontal{
+
+    &.horizontal {
         flex-basis: 60%;
         padding-right: 25px;
     }
-    
+
     .selection-item {
         padding: 0 7px 0 7px;
         border-radius: 15px;
@@ -85,8 +85,9 @@
             font-style: italic;
         }
 
-        &.checked{
+        &.checked {
             background-color: #8F8F8F;
+
             span {
                 color: white;
             }
@@ -158,5 +159,21 @@
 
     svg {
         padding-right: 10px;
+    }
+}
+
+.bar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .bar-chart-text {
+        font-size: 10pt;
+        margin-top: -15px;
+        font-family: "PT Sans";
+        color: #8F8F8F;
+        font-weight: bold;
+        font-style: italic;
     }
 }
