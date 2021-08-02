@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Marker } from 'react-map-gl';
-import { convertRemToPixels } from '../utils/conversions';
-import aqiCategories from '../data/aqiCategories.json';
+import { convertRemToPixels, convertAQIToColor } from '../utils/conversions';
 
-function Flag({ lat, long, aqi, schoolCode }) {
-  let color = '';
-  aqiCategories.forEach((cat) => {
-    if (cat.low <= aqi && cat.high >= aqi) color = cat.hex;
-  });
+function Flag({ lat, long, aqi, schoolCode, setSelectedSchoolID }) {
+  let color = convertAQIToColor(aqi);
+  console.log('Marker', schoolCode);
   return (
     <FlagMarker
       latitude={lat}
@@ -18,6 +15,7 @@ function Flag({ lat, long, aqi, schoolCode }) {
       className="flag"
       offsetLeft={-1 * convertRemToPixels(1)}
       offsetTop={-1 * convertRemToPixels(2.2)}
+      onClick={() => setSelectedSchoolID(schoolCode)}
     >
       <svg
         viewBox="0 0 1248 1080"

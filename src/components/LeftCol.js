@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as OpenAQ } from '../assets/logos/openaq-logo.svg';
 import { ReactComponent as StMary } from '../assets/logos/st-mary-logo.svg';
+import SchoolContainer from './SchoolContainer';
 
-function LeftCol() {
+function LeftCol({ combinedData, setSelectedSchoolID }) {
   return (
     <Container>
       <LeftColHeader>
@@ -14,17 +15,32 @@ function LeftCol() {
           <StMaryLogo />
         </a>
       </LeftColHeader>
+      <SectionTitle>Elementary Schools</SectionTitle>
+      {combinedData
+        .filter((school) => school.category === 'Elementary')
+        .map((school) => {
+          return (
+            <SchoolContainer
+              schoolName={school.name}
+              aqi={school.liveAQI}
+              onClick={() => setSelectedSchoolID(school.id)}
+            />
+          );
+        })}
+      <SectionTitle>Middle Schools</SectionTitle>
+      <SectionTitle>High Schools</SectionTitle>
+      <SectionTitle>Other Facilities</SectionTitle>
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 20rem;
-  height: 90vh;
+  width: 18.5rem;
+  height: 92vh;
   position: absolute;
   z-index: 3;
-  top: 5vh;
-  left: 5vh;
+  top: 4vh;
+  left: 4vh;
   border-radius: 2rem;
   background-color: #f4f4f4;
 `;
@@ -51,6 +67,15 @@ const OpenAQLogo = styled(OpenAQ)`
 const StMaryLogo = styled(StMary)`
   height: 2.75rem;
   width: 12rem;
+`;
+const SectionTitle = styled.div`
+  font-family: 'Vickey', 'PT Serif', serif;
+  font-size: 1.1rem;
+  width: 100%;
+  padding: 0.7rem;
+  color: #616161;
+  text-align: center;
+  box-sizing: border-box;
 `;
 
 export default LeftCol;

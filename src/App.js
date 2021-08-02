@@ -5,13 +5,42 @@ import RightModal from './components/RightModal';
 import Map from './components/Map';
 import BarChart from './components/BarChart';
 import SensorCurrentDisplay from './components/SensorCurrentDisplay';
-import CSVModal from './components/CSVModal';
-import { getSensorDataByURL } from './utils/getSensorData';
+// import CSVModal from './components/CSVModal';
+import { getLiveSensorData } from './utils/getSensorData';
+import schoolDataJSON from './data/schoolData.json';
 import './App.css';
 
 function App() {
-  useEffect(() => {
-    console.log(getSensorDataByURL());
+  const [combinedData, setCombinedData] = useState([]);
+  const [selectedSchoolID, setSelectedSchoolID] = useState(0);
+
+  useEffect(async () => {
+    // Get data from all sources
+    const sensorData = await getLiveSensorData();
+    const schoolData = schoolDataJSON;
+    // Loop through schools to combine data into array  as single source of truth
+    schoolData.forEach((school) => {
+      // Construct array of sensor data for each school
+      school.sensors.forEach((schoolSensor) => {
+        let sensor = sensorData.find(
+          (liveSensor) => liveSensor.ID === schoolSensor.id
+        );
+        schoolSensor.liveAQI = sensor.AQI;
+        schoolSensor.livePM25 = sensor.pm2_5_current;
+      });
+      // Get average PM 2.5 of all school's sensors
+      school.livePM25 = Math.round(
+        school.sensors.reduce((total, next) => total + next.livePM25, 0) /
+          school.sensors.length
+      );
+      // Get average AQI of all school's sensors
+      school.liveAQI = Math.round(
+        school.sensors.reduce((total, next) => total + next.liveAQI, 0) /
+          school.sensors.length
+      );
+    });
+    // Setstate using combined datasets
+    setCombinedData(schoolData);
 
     document.getElementById('date-selector-button-0').classList.add('selected');
     document
@@ -23,14 +52,17 @@ function App() {
     document
       .getElementById('graph-selector-button-2')
       .classList.add('selected');
-    const data = getSensorDataByURL(
-      'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=csv&limit=66536&location=224746&date_from=2021-04-17T07%3A00%3A00.000Z&date_to=2021-05-01T07%3A00%3A00.000Z&parameter=130&parameter=2'
-    );
-    console.log(data);
   }, []);
 
+  useEffect(
+    (selectedSchoolID) => {
+      alert('School ID changed to', selectedSchoolID);
+    },
+    [selectedSchoolID]
+  );
+
   const [data, setData] = useState([
-    50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10,
+    50, 70, 20, 90, 70, 30, 80, 40, 20, 50, 30, 90, 20, 10, 20, 25, 30, 25,
   ]);
 
   const [graphs, setGraphs] = useState([true, true, true, false]);
@@ -93,8 +125,14 @@ function App() {
 
   return (
     <AppContainer>
-      <LeftCol />
-      <Map />
+      <LeftCol
+        combinedData={combinedData}
+        setSelectedSchoolID={setSelectedSchoolID}
+      />
+      <Map
+        combinedData={combinedData}
+        setSelectedSchoolID={setSelectedSchoolID}
+      />
       <RightModal>
         <SensorCurrentDisplay
           dimensions={sensordimensions}
