@@ -1,0 +1,21 @@
+.export-csv {
+    border-radius: 15px;
+    border: 2px solid #8F8F8F;
+    background-color: #F4F4F4;
+    width: 105px;
+
+    font-family: "PT Sans";
+    font-weight: bold;
+    color: #909090;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: #8F8F8F;
+        color: white;
+    }
+}
+
+.export-csv.disabled {
+    cursor: not-allowed;
+}
