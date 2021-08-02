@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { ReactComponent as BuilderSVG } from "../../assets/icons/query-builder.svg";
 import { ReactComponent as GraphViewSVG } from "../../assets/icons/graph-view.svg";
 import LocationTitle from "./LocationTitle";

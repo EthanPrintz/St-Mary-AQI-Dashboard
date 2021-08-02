@@ -8,8 +8,6 @@ import axios from "axios";
 
 const TODAY = new Date();
 function CSVModal(props) {
-  const { school } = props;
-
   const [sensorOptions, setSensorOptions] = useState([
     { value: "225029", checked: false },
     { value: "beep2", checked: false },
