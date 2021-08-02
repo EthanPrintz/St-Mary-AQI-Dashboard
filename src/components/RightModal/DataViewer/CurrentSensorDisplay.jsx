@@ -1,4 +1,5 @@
 import React from "react";
+import { convertAQIToColor } from '../../../utils/conversions';
 
 class CurrentSensorDisplay extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class CurrentSensorDisplay extends React.Component {
           <span
             className="average-index"
             style={{
-              color: this.average > 50 ? "#F1C510" : "#6CBE44",
+              color: convertAQIToColor(this.average),
             }}
           >
             {this.average}
@@ -50,7 +51,7 @@ class CurrentSensorDisplay extends React.Component {
                 className="individual-sensor-reading"
                 height={this.height * 0.15}
                 style={{
-                  color: this.sensorvals[i] > 50 ? "#F1C510" : "#6CBE44",
+			      color: convertAQIToColor(this.sensorvals[i]),
                 }}
               >
                 {this.sensorvals[i]}

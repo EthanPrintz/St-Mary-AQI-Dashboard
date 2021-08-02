@@ -2,6 +2,7 @@
 //https://medium.com/@varvara.munday/d3-in-react-a-step-by-step-tutorial-cba33ce000ce
 import React from 'react';
 import * as d3 from 'd3';
+import { convertAQIToColor } from '../../../utils/conversions';
 
 class BarChart extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class BarChart extends React.Component {
     this.width = this.props.dimensions[0];
     this.height = this.props.dimensions[1];
     this.margin = this.props.dimensions[2];
+
+    this.max = 150
 
     if (!document.getElementById('tooltip')) {
       var tooltip = d3
@@ -29,7 +32,7 @@ class BarChart extends React.Component {
     let textHeight = this.margin;
     let yScale = d3
       .scaleLinear()
-      .domain([0, 100])
+      .domain([0, this.max])
       .range([this.height - this.margin - textHeight, this.margin]);
 
     let xScale = d3
@@ -51,7 +54,7 @@ class BarChart extends React.Component {
 	rects.enter()
       .append('rect')
       .attr('class', 'rect')
-      .attr('height', (d) => yScale(100))
+      .attr('height', (d) => yScale(this.max))
       .attr('width', this.width / this.props.data.length - 3)
       .attr('x', (d, i) => xScale(i))
       .attr('y', (d) => yScale(0))
@@ -60,7 +63,7 @@ class BarChart extends React.Component {
         if (this.props.gray) {
           return '#909090';
         } else {
-          return d < 75 ? '#6CBE44' : '#F1C510';
+		  return  convertAQIToColor(d);
         }
       })
       .on('mouseover', function (event, d) {
@@ -87,7 +90,7 @@ class BarChart extends React.Component {
 	  .merge(rects)
       .transition()
       .duration(1000)
-      .attr('height', (d) => yScale(100 - d))
+      .attr('height', (d) => yScale(this.max - d))
       .attr('width', this.width / this.props.data.length - 3)
       .attr('x', (d, i) => xScale(i))
       .attr('y', (d) => yScale(d))
@@ -96,7 +99,7 @@ class BarChart extends React.Component {
         if (this.props.gray) {
           return '#909090';
         } else {
-          return d < 75 ? '#6CBE44' : '#F1C510';
+		  return  convertAQIToColor(d);
         }
       });
   }
@@ -113,7 +116,7 @@ class BarChart extends React.Component {
 
     let yScale = d3
       .scaleLinear()
-      .domain([0, 100])
+      .domain([0, this.max])
       .range([this.height - this.margin - textHeight, this.margin]);
 
     let svg = d3
@@ -130,14 +133,14 @@ class BarChart extends React.Component {
       .enter()
       .append('rect')
       .attr('x', (d, i) => xScale(i))
-      .attr('height', (d) => yScale(100 - d))
+      .attr('height', (d) => yScale(this.max - d))
       .attr('y', (d) => yScale(d))
       .attr('width', this.width / this.props.data.length - 3)
       .attr('fill', (d) => {
         if (this.props.gray) {
           return '#909090';
         } else {
-          return d < 75 ? '#6CBE44' : '#F1C510';
+		  return  convertAQIToColor(d);
         }
       })
       .attr('rx', this.width / this.props.data.length / 3)
