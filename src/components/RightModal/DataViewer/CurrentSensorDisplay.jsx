@@ -45,7 +45,7 @@ class CurrentSensorDisplay extends React.Component {
         </div>
         <div className="individual-sensors-container">
           {this.sensornames.map((val, i) => (
-            <div className="sensor">
+            <div className="sensor" key={"sensor-" + i}>
               <span
                 className="individual-sensor-reading"
                 height={this.height * 0.15}

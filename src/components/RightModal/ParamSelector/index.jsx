@@ -13,13 +13,14 @@ function ParamSelector(props) {
         <span className="selection-title">Select {queryParamType}</span>
       </div>
       <div className={`horizontal-list-container ${widget ? "widget" : ""}`}>
-        {dataState.map((type) => (
+        {dataState.map((type, i) => (
           <SelectionPill
             dataParameter={type}
             state={dataState}
             changeState={setDataState}
             allowMultiple={allowMultiple}
             index={0}
+            key={"pill-"+i}
           />
         ))}
       </div>

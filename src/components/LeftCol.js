@@ -18,10 +18,11 @@ function LeftCol({ combinedData, setSelectedSchoolID }) {
       <SectionTitle>Elementary Schools</SectionTitle>
       {combinedData
         .filter((school) => school.category === 'Elementary')
-        .map((school) => {
+        .map((school, i) => {
           return (
             <SchoolContainer
               schoolName={school.name}
+			  key={"school-" + i}
               aqi={school.liveAQI}
               onClick={() => setSelectedSchoolID(school.id)}
             />
