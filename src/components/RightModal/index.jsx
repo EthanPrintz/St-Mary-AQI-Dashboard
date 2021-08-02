@@ -9,8 +9,7 @@ import CSVModal from "./CSVModal";
 import SwitchSection from "./SwitchSection";
 
 function RightModal(props) {
-  const { children } = props;
-  const [showDataCharts, setShowDataCharts] = useState(false);
+  const [showDataCharts, setShowDataCharts] = useState(true);
 
   return (
     <div className="right-modal">
@@ -24,7 +23,6 @@ function RightModal(props) {
         }
         onClick={(e) => {
           setShowDataCharts(!showDataCharts);
-          console.log("Yeetus");
         }}
       />
     </div>

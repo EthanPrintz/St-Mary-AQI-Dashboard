@@ -14,9 +14,9 @@ class CurrentSensorDisplay extends React.Component {
     this.front = this.props.front;
 
     this.sensornames = [
-      "Back Left Sensor",
-      "Front Sensor",
-      "Back Right Sensor",
+      "Back Left",
+      "Front",
+      "Back Right",
     ];
     this.sensorvals = [this.backleft, this.front, this.backright];
 
@@ -45,29 +45,21 @@ class CurrentSensorDisplay extends React.Component {
         </div>
         <div className="individual-sensors-container">
           {this.sensornames.map((val, i) => (
-            <div style={{ display: "inline-block", margin: "10px" }}>
-              <p
+            <div className="sensor">
+              <span
+                className="individual-sensor-reading"
                 height={this.height * 0.15}
                 style={{
-                  display: "block",
-                  fontSize: this.height * 0.15,
-                  marginTop: 0,
-                  marginBottom: 0,
                   color: this.sensorvals[i] > 50 ? "#F1C510" : "#6CBE44",
                 }}
               >
                 {this.sensorvals[i]}
-              </p>
-              <p
-                height={this.height * 0.1}
-                style={{
-                  display: "block",
-                  fontSize: this.height * 0.08,
-                  marginTop: 0,
-                }}
+              </span>
+              <span
+                className="individual-sensor-desc"
               >
                 {this.sensornames[i]}
-              </p>
+              </span>
             </div>
           ))}
         </div>
