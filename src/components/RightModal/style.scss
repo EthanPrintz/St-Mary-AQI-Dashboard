@@ -1,179 +1,67 @@
-// .modal-container {
-//     width: 350px;
-//     border-radius: 30px;
-//     background-color: #F4F4F4;
-//     font-family: "PT Sans";
-.header {
-    height: 40px;
-    background-color: #6CBE44;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+.right-modal {
+    --border-radius: 30px;
 
-    text-align: center;
-    color: white;
-    font-size: 17pt;
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    z-index: 3;
+    
+    border-radius: var(--border-radius);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 34vh;
+    width: 25rem;
+    
+    background-color: #f4f4f4;
+    font-family: "PT Sans";
+    
+    .header {
+        height: 40px;
+        background-color: #6CBE44;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        text-align: center;
+        color: white;
+        font-size: 17pt;
 
-    font-weight: bold;
-}
 
-.body-content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 18px;
-}
-
-.selection-container {
-    color: #909090;
-    background-color: #FFFCFC;
-    padding: 2px;
-    border-radius: 10px;
-
-    &.horizontal {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
+        align-items: center;
+        justify-content: center;
 
-.selection-title-container {
-    padding-bottom: 5px;
-
-    &.horizontal {
-        flex-basis: 40%;
-        float: right;
+        font-weight: bold;
     }
 
-    .selection-title {
-        padding-left: 25px;
-        font-size: 11pt;
+    .body-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px var(--border-radius);
+    }
+
+    .footer {
+        height: 40px;
+        background-color: #F9F9F9;
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+
         font-weight: bold;
         color: #909090;
-    }
-}
 
+        display: flex;
 
-.horizontal-list-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
+        .switch-button-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
 
-    &.horizontal {
-        flex-basis: 60%;
-        padding-right: 25px;
-    }
+            cursor: pointer;
 
-    .selection-item {
-        padding: 0 7px 0 7px;
-        border-radius: 15px;
-        border: 1px solid #8F8F8F;
+            padding-left: 30px;
 
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-
-        span {
-            color: #8F8F8F;
-            font-size: 12px;
-            font-family: "PT Sans";
-            font-weight: bold;
-            font-style: italic;
-        }
-
-        &.checked {
-            background-color: #8F8F8F;
-
-            span {
-                color: white;
+            svg {
+                padding-right: 10px;
             }
         }
-    }
-
-    input {
-        text-align: center;
-        width: 110px;
-
-        border-radius: 15px;
-        border: 1px solid #EDEDED;
-
-        font-family: "PT Sans";
-        font-size: 10pt;
-        color: #909090;
-        font-weight: bold;
-        font-style: italic;
-
-        display: inline-block;
-        // flex-direction: row-reverse;
-    }
-
-    ::-webkit-calendar-picker-indicator {
-        padding-right: 5px;
-        margin: 0px;
-        cursor: pointer;
-    }
-
-}
-
-.dates {
-    padding-top: 5px;
-}
-
-.export-csv {
-    border-radius: 15px;
-    border: 2px solid #8F8F8F;
-    background-color: #F4F4F4;
-    width: 105px;
-
-    font-family: "PT Sans";
-    font-weight: bold;
-    color: #909090;
-
-    cursor: pointer;
-
-    &:hover {
-        background-color: #8F8F8F;
-        color: white;
-    }
-
-    margin-bottom: 30px;
-}
-
-.export-csv.disabled {
-    cursor: not-allowed;
-}
-
-// }
-
-.modal-switch {
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    align-items: center;
-    color: #909090;
-    cursor: pointer;
-
-    svg {
-        padding-right: 10px;
-    }
-}
-
-.bar-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .bar-chart-text {
-        font-size: 10pt;
-        margin-top: -15px;
-        font-family: "PT Sans";
-        color: #8F8F8F;
-        font-weight: bold;
-        font-style: italic;
     }
 }

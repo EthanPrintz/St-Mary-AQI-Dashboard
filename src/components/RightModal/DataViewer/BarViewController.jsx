@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BarChart from "./BarChart";
-import HParamSelector from "./HParamSelector";
+import ParamSelector from "../ParamSelector";
 
 let GRAPH_DIMENSIONS = [
   window.screen.width * 0.24,
@@ -62,17 +62,19 @@ function BarViewController() {
 
   return (
     <>
-      <HParamSelector
+      <ParamSelector
         queryParamType={"Data for Past"}
         dataState={timespanState}
         setDataState={setTimespanState}
         allowMultiple={false}
+        widget
       />
-      <HParamSelector
+      <ParamSelector
         queryParamType={"Air Factors"}
         dataState={airFactors}
         setDataState={setAirFactors}
         allowMultiple
+        widget
       />
       <div className="bar-container">{renderGraphs()}</div>
     </>

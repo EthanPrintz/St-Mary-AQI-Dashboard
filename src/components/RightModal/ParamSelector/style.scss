@@ -1,0 +1,89 @@
+.selection-container {
+  color: #909090;
+  background-color: #FFFCFC;
+  border-radius: 10px;
+  width: 250px;
+  padding: 15px;
+
+  &.widget {
+    padding: 5px;
+    background-color: #F4F4F4;
+    width: 100%;
+  }
+}
+
+.selection-title-container {
+  padding-bottom: 5px;
+
+  .selection-title {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #909090;
+  }
+}
+
+
+.horizontal-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+
+  &.widget{
+    justify-content: left;
+  }
+
+  &.dates{
+    padding-top: 5px;
+  }
+
+  .selection-item {
+    padding: 0 7px 0 7px;
+    margin-left: 3px;
+    border-radius: 15px;
+    border: 1px solid #8F8F8F;
+
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    span {
+      color: #8F8F8F;
+      font-size: 9pt;
+      font-family: "PT Sans";
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    &.checked {
+      background-color: #8F8F8F;
+
+      span {
+        color: white;
+      }
+    }
+  }
+
+  .date-select {
+    text-align: center;
+    width: 110px;
+
+    border-radius: 15px;
+    border: 1px solid #EDEDED;
+
+    font-family: "PT Sans";
+    font-size: 9pt;
+    color: #909090;
+    font-weight: bold;
+    font-style: italic;
+
+    display: inline-block;
+  }
+
+  ::-webkit-calendar-picker-indicator {
+    padding-right: 5px;
+    margin: 0px;
+    cursor: pointer;
+  }
+
+}

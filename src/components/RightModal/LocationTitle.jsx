@@ -6,10 +6,10 @@ function LocationTitle(props){
     const locationName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === location).name;
 
     return (
-        <div className="header">
-          <span className="location-title">{locationName}</span>
-        </div>
-    )
+      <header className="header">
+        <span className="location-title">{locationName}</span>
+      </header>
+    );
 }
 
 export default LocationTitle
