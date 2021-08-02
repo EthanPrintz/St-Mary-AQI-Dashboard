@@ -2,6 +2,7 @@ import React from "react";
 
 function SelectionPill(props) {
   const { dataParameter, state, changeState, allowMultiple } = props;
+  const runFunction = props.runFunction 
 
   function handleFetchChange(e) {
     const newState = [...state];
@@ -11,6 +12,10 @@ function SelectionPill(props) {
     }
     dataParameter.checked = !dataChecked;
     changeState(newState);
+    console.log(runFunction)
+    if(runFunction !== undefined){
+      runFunction();
+    }
   }
 
   return (

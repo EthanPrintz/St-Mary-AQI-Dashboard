@@ -6,6 +6,7 @@ function ParamSelector(props) {
   const {
     dataState, setDataState, queryParamType, allowMultiple, widget
   } = props;
+  const runFunction = props.runFunction
 
   return (
     <div className={`selection-container ${widget ? "widget" : ""}`}>
@@ -21,6 +22,7 @@ function ParamSelector(props) {
             allowMultiple={allowMultiple}
             index={0}
             key={"pill-"+i}
+            runFunction={runFunction}
           />
         ))}
       </div>
