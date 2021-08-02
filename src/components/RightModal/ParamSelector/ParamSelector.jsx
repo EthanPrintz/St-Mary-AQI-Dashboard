@@ -2,13 +2,13 @@ import React from 'react';
 import './style.scss';
 import SelectionPill from './SelectionPill';
 
-function QuerySelector(props) {
+function ParamSelector(props) {
   const {
     dataState, setDataState, queryParamType, allowMultiple,
   } = props;
 
   return (
-    <div className="selection-container pollutant">
+    <div className="selection-container">
       <div className="selection-title-container">
         <span className="selection-title">
           Select
@@ -33,4 +33,4 @@ function QuerySelector(props) {
   );
 }
 
-export default QuerySelector;
+export default ParamSelector;

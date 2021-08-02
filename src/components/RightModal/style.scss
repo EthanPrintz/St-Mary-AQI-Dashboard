@@ -1,0 +1,67 @@
+.right-modal {
+    --border-radius: 30px;
+
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    z-index: 3;
+    
+    border-radius: var(--border-radius);
+
+    min-height: 34vh;
+    width: 25rem;
+    
+    background-color: #f4f4f4;
+    font-family: "PT Sans";
+    
+    .header {
+        height: 40px;
+        background-color: #6CBE44;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        text-align: center;
+        color: white;
+        font-size: 17pt;
+
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: bold;
+    }
+
+    .body-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px var(--border-radius);
+    }
+
+    .footer {
+        height: 40px;
+        background-color: #F9F9F9;
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+
+        font-weight: bold;
+        color: #909090;
+
+        display: flex;
+
+        .switch-button-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
+
+            cursor: pointer;
+
+            padding-left: 30px;
+
+            svg {
+                padding-right: 10px;
+            }
+        }
+    }
+}

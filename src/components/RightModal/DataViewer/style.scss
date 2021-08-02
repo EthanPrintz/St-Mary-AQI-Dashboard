@@ -1,0 +1,69 @@
+.sensor-readings-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+
+  .average-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+
+    .average-index {
+      font-size: 36pt;
+      font-family: "PT Serif";
+      padding-right: 5px;
+    }
+
+    .average-desc {
+      font-family: "PT Sans";
+      color: #909090;
+      font-style: italic;
+      padding-left: 5px;
+    }
+  }
+
+
+
+  .individual-sensors-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 15px;
+
+    .sensor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .individual-sensor-reading {
+        font-family: "PT Serif";
+        font-size: 20pt;
+        font-weight: bold;
+      }
+
+      .individual-sensor-desc {
+        font-family: "PT Sans";
+        font-size: 11pt;
+        font-weight: bold;
+        color: #909090;
+      }
+    }
+  }
+}
+
+.air-bar-chart {
+  .bar-chart-text {
+    font-family: "PT Sans";
+    font-size: 10pt;
+    font-weight: bold;
+    font-style: italic;
+    color: #909090;
+
+    margin-top: -18px;
+  }
+}
