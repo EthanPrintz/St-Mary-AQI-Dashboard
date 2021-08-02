@@ -76,9 +76,10 @@ function TimespanSelector(props) {
       </div>
       <div className="horizontal-list-container">
         {
-            timespans.map((timespan) => (
+            timespans.map((timespan,i) => (
               <CustomSelectionPill
                 timespan={timespan}
+                key={"custompill-" + i}
               />
             ))
           }
