@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BarViewController from "./BarViewController";
 import CurrentSensorDisplay from "./CurrentSensorDisplay";
 import "./style.scss"
 
-function DataViewer() {
+function DataViewer(props) {
   let sensorDimensions = [
     window.screen.width * 0.24,
     window.screen.width * 0.12,
@@ -14,9 +14,8 @@ function DataViewer() {
     <div className="body-content">
       <CurrentSensorDisplay
         dimensions={sensorDimensions}
-        backleft={52}
-        front={47}
-        backright={47}
+        liveAQI={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].liveAQI : "-"}
+        liveSensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors : []}
       />
       <BarViewController />
     </div>

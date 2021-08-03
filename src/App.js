@@ -58,7 +58,10 @@ function App() {
         combinedData={combinedData}
         setSelectedSchoolID={setSelectedSchoolID}
       />
-      <RightModal />
+      <RightModal 
+        combinedData={combinedData}
+        selectedSchoolID={selectedSchoolID}
+      />
     </AppContainer>
   );
 }

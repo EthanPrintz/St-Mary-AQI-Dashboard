@@ -10,21 +10,8 @@ class CurrentSensorDisplay extends React.Component {
     this.height = this.props.dimensions[1];
     this.margin = this.props.dimensions[2];
 
-    this.backleft = this.props.backleft;
-    this.backright = this.props.backright;
-    this.front = this.props.front;
-
-    this.sensornames = [
-      "Back Left",
-      "Front",
-      "Back Right",
-    ];
-    this.sensorvals = [this.backleft, this.front, this.backright];
-
-    this.average = Math.round(
-      (this.backleft + this.backright + this.front) / 3
-    );
   }
+  
 
   render() {
     return (
@@ -33,10 +20,10 @@ class CurrentSensorDisplay extends React.Component {
           <span
             className="average-index"
             style={{
-              color: convertAQIToColor(this.average),
+              color: convertAQIToColor(this.props.liveAQI),
             }}
           >
-            {this.average}
+            {this.props.liveAQI}
           </span>
           <span className="average-desc">
             Current Averaged
@@ -45,21 +32,21 @@ class CurrentSensorDisplay extends React.Component {
           </span>
         </div>
         <div className="individual-sensors-container">
-          {this.sensornames.map((val, i) => (
+          {this.props.liveSensors.map((val, i) => (
             <div className="sensor" key={"sensor-" + i}>
               <span
                 className="individual-sensor-reading"
                 height={this.height * 0.15}
                 style={{
-			      color: convertAQIToColor(this.sensorvals[i]),
+			      color: convertAQIToColor(this.props.liveSensors[i].liveAQI),
                 }}
               >
-                {this.sensorvals[i]}
+                {this.props.liveSensors[i].liveAQI}
               </span>
               <span
                 className="individual-sensor-desc"
               >
-                {this.sensornames[i]}
+                {this.props.liveSensors[i].name.replace(" Sensor", "")}
               </span>
             </div>
           ))}

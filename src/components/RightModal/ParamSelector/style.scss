@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 
   &.widget{
     justify-content: left;
@@ -38,8 +38,8 @@
   }
 
   .selection-item {
-    padding: 0 7px 0 7px;
-    margin-left: 3px;
+    padding: 0px 7px 0 7px;
+    margin: 2px 1px;
     border-radius: 15px;
     border: 1px solid #8F8F8F;
 
