@@ -12,7 +12,6 @@ function SelectionPill(props) {
     }
     dataParameter.checked = !dataChecked;
     changeState(newState);
-    console.log(runFunction)
     if(runFunction !== undefined){
       runFunction();
     }

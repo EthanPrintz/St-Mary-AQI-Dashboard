@@ -57,6 +57,12 @@
 }
 
 .air-bar-chart {
+  .svg-chart-container{
+    svg{
+      width: 100%;
+    }
+  }
+  
   .bar-chart-text {
     font-family: "PT Sans";
     font-size: 10pt;

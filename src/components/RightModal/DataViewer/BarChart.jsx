@@ -19,16 +19,16 @@ class BarChart extends React.Component {
 
     if (!document.getElementById('tooltip')) {
       var tooltip = d3
-        .select('body')
-        .append('div')
-        .attr('id', 'tooltip')
-        .attr('style', 'position: absolute; opacity: 0; z-index: 4;');
+        .select("body")
+        .append("div")
+        .attr("id", "tooltip")
+        .attr("style", "position: absolute; opacity: 0; z-index: 4;");
       this.tooltip = tooltip;
     }
   }
 
   componentDidUpdate() {
-	//console.log("updated")
+    //console.log("updated")
     let textHeight = this.margin;
     let yScale = d3
       .scaleLinear()
@@ -38,18 +38,15 @@ class BarChart extends React.Component {
     let xScale = d3
       .scaleLinear()
       .domain([0, this.props.data.length])
-      .range([this.margin, this.width-this.margin]);
+      .range([this.margin, this.width - this.margin]);
 
     //let svg = d3.select(this.myRef.current);
-	let svg = this.svg
+    let svg = this.svg;
     //console.log(this.props.data);
 
-    let rects = svg
-      .selectAll('.rect')
-      .data(this.props.data)
+    let rects = svg.selectAll(".rect").data(this.props.data);
 
-	//console.log(rects)
-
+    //console.log(rects)
 
 	rects.enter()
       .append('rect')
@@ -61,33 +58,33 @@ class BarChart extends React.Component {
       .attr('rx', this.width / this.props.data.length / 3)
       .attr('fill', (d) => {
         if (this.props.gray) {
-          return '#909090';
+          return "#909090";
         } else {
 		  return  convertAQIToColor(d);
         }
       })
-      .on('mouseover', function (event, d) {
-        this.tooltip = d3.select('#tooltip');
+      .on("mouseover", function (event, d) {
+        this.tooltip = d3.select("#tooltip");
 
         this.tooltip
           .transition()
           .duration(80)
-          .style('display', 'block')
-          .style('opacity', 1)
-          .text(d + ' AQ')
-          .style('left', event.pageX + 15 + 'px')
-          .style('top', event.pageY - 15 + 'px')
+          .style("display", "block")
+          .style("opacity", 1)
+          .text(d + " AQ")
+          .style("left", event.pageX + 15 + "px")
+          .style("top", event.pageY - 15 + "px")
           .transition()
           .duration(3000)
-          .style('opacity', 0)
+          .style("opacity", 0)
           .transition()
           .delay(1000)
-          .style('display', 'none');
+          .style("display", "none");
       })
-      .on('mouseout', function (e) {
-        this.tooltip.style('opacity', 0).style('display', 'none');
+      .on("mouseout", function (e) {
+        this.tooltip.style("opacity", 0).style("display", "none");
       })
-	  .merge(rects)
+      .merge(rects)
       .transition()
       .duration(1000)
       .attr('height', (d) => yScale(this.max - d))
@@ -97,7 +94,7 @@ class BarChart extends React.Component {
       .attr('rx', this.width / this.props.data.length / 3)
       .attr('fill', (d) => {
         if (this.props.gray) {
-          return '#909090';
+          return "#909090";
         } else {
 		  return  convertAQIToColor(d);
         }
@@ -112,7 +109,7 @@ class BarChart extends React.Component {
     let xScale = d3
       .scaleLinear()
       .domain([0, this.props.data.length])
-      .range([this.margin, this.width-this.margin]);
+      .range([this.margin, this.width - this.margin]);
 
     let yScale = d3
       .scaleLinear()
@@ -121,14 +118,14 @@ class BarChart extends React.Component {
 
     let svg = d3
       .select(this.myRef.current)
-      .append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height);
-	
-	this.svg = svg;
+      .append("svg")
+      .attr("width", this.width)
+      .attr("height", this.height);
+
+    this.svg = svg;
 
     svg
-      .selectAll('.rect')
+      .selectAll(".rect")
       .data(this.props.data)
       .enter()
       .append('rect')
@@ -138,47 +135,52 @@ class BarChart extends React.Component {
       .attr('width', this.width / this.props.data.length - 3)
       .attr('fill', (d) => {
         if (this.props.gray) {
-          return '#909090';
+          return "#909090";
         } else {
 		  return  convertAQIToColor(d);
         }
       })
-      .attr('rx', this.width / this.props.data.length / 3)
-      .attr('class', 'rect')
-      .on('mouseover', function (event, d) {
-        this.tooltip = d3.select('#tooltip');
+      .attr("rx", this.width / this.props.data.length / 3)
+      .attr("class", "rect")
+      .on("mouseover", function (event, d) {
+        this.tooltip = d3.select("#tooltip");
 
         this.tooltip
           .transition()
           .duration(80)
-          .style('display', 'block')
-          .style('opacity', 1)
-          .text(d + ' AQ')
-          .style('left', event.pageX + 15 + 'px')
-          .style('top', event.pageY - 15 + 'px')
+          .style("display", "block")
+          .style("opacity", 1)
+          .text(d + " AQ")
+          .style("left", event.pageX + 15 + "px")
+          .style("top", event.pageY - 15 + "px")
           .transition()
           .duration(3000)
-          .style('opacity', 0)
+          .style("opacity", 0)
           .transition()
           .delay(1000)
-          .style('display', 'none');
+          .style("display", "none");
       })
-      .on('mouseout', function (e) {
-        this.tooltip.style('opacity', 0).style('display', 'none');
+      .on("mouseout", function (e) {
+        this.tooltip.style("opacity", 0).style("display", "none");
       });
 
     //console.log(this.props.desc);
-    svg
-      .append('text')
-      .attr('x', this.margin)
-      .attr('y', this.height - textHeight / 4)
-      .attr('fill', 'black')
-      .text(this.props.desc)
-      .attr('font-size', textHeight)
-      .attr('class', 'bar-chart-text');
+    // svg
+    //   .append('text')
+    //   .attr('x', this.margin)
+    //   .attr('y', this.height - textHeight / 4)
+    //   .attr('fill', 'black')
+    //   .text(this.props.desc)
+    //   .attr('font-size', textHeight)
+    //   .attr('class', 'bar-chart-text');
   }
   render() {
-    return <div ref={this.myRef}></div>;
+    return (
+      <div className="air-bar-chart">
+        <div ref={this.myRef} className="svg-chart-container"/>
+        <span className="bar-chart-text">{this.props.desc}</span>
+      </div>
+    );
   }
 }
 export default BarChart;
