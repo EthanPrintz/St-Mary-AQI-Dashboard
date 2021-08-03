@@ -71,7 +71,7 @@ class BarChart extends React.Component {
           .duration(80)
           .style("display", "block")
           .style("opacity", 1)
-          .text(d + " AQ")
+          .text(d + " µg/m³")
           .style("left", event.pageX + 15 + "px")
           .style("top", event.pageY - 15 + "px")
           .transition()
@@ -150,7 +150,7 @@ class BarChart extends React.Component {
           .duration(80)
           .style("display", "block")
           .style("opacity", 1)
-          .text(d + " AQ")
+          .text(d + " µg/m³")
           .style("left", event.pageX + 15 + "px")
           .style("top", event.pageY - 15 + "px")
           .transition()
@@ -164,15 +164,6 @@ class BarChart extends React.Component {
         this.tooltip.style("opacity", 0).style("display", "none");
       });
 
-    //console.log(this.props.desc);
-    // svg
-    //   .append('text')
-    //   .attr('x', this.margin)
-    //   .attr('y', this.height - textHeight / 4)
-    //   .attr('fill', 'black')
-    //   .text(this.props.desc)
-    //   .attr('font-size', textHeight)
-    //   .attr('class', 'bar-chart-text');
   }
   render() {
     return (

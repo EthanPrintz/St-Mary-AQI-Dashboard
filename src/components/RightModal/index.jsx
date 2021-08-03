@@ -10,12 +10,14 @@ import SwitchSection from "./SwitchSection";
 
 function RightModal(props) {
   const [showDataCharts, setShowDataCharts] = useState(true);
+  console.log(props.combinedData)
 
   return (
     <div className="right-modal">
       {/* TODO: remove hard-coded school loc */}
-      <LocationTitle location="gmhs" />
-      {showDataCharts ? <DataViewer /> : <CSVModal school="gmhs" />}
+      <LocationTitle location="gmhs" schoolName = {props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].name : "School Name"}
+        liveAQI={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].liveAQI : 0}/>
+      {showDataCharts ? <DataViewer combinedData={props.combinedData} selectedSchoolID={props.selectedSchoolID}/> : <CSVModal school="gmhs" />}
       <SwitchSection
         svg={showDataCharts ? <BuilderSVG /> : <GraphViewSVG />}
         text={
