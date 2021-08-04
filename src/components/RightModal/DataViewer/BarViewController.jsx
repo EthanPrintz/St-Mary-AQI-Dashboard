@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BarChart from "./BarChart";
 import ParamSelector from "../ParamSelector";
 import axios from 'axios';
+import { convertPM25ToColor, convertPM10ToColor  } from '../../../utils/conversions';
 
 let GRAPH_DIMENSIONS = [
   window.screen.width * 0.24,
@@ -24,7 +25,7 @@ function reduceArr(arr, newsize){
   return newarr
 }
 
-function BarViewController() {
+function BarViewController(props) {
   const [timespanState, setTimespanState] = useState([
     { value: "24 Hours", checked: true },
     { value: "3 Days", checked: false },
@@ -35,8 +36,8 @@ function BarViewController() {
   const [airFactors, setAirFactors] = useState([
     { value: "PM 2.5", checked: true },
     { value: "PM 10", checked: true },
-    { value: "Temperature", checked: false },
-    { value: "Humidity", checked: false },
+    //{ value: "Temperature", checked: false },
+    //{ value: "Humidity", checked: false },
   ]);
 
   const [displayedDataSets, setDisplayedDataSets] = useState({
@@ -64,7 +65,8 @@ function BarViewController() {
       'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=json&';
 
     const queries = [];
-    const selectedSensors = ['224756'];
+    console.log(props)
+    const selectedSensors = props.sensors;
     const TODAY = new Date();
     let currTS = timespanState.filter((item) => item.checked)[0]
     let startdate = new Date();
@@ -111,6 +113,7 @@ function BarViewController() {
 
     response.then((raw) => {
       let data = raw.data.results;
+      console.log(data)
 
       //pm25
       let pm25 = data
@@ -143,6 +146,7 @@ function BarViewController() {
             data={displayedDataSets.graphs[airFactor.value].data}
             dimensions={GRAPH_DIMENSIONS}
             desc={airFactor.value}
+            colorFunc={airFactor.value === "PM 2.5" ? convertPM25ToColor : convertPM10ToColor}
             gray={["Temperature", "Humidity"].includes(airFactor.value)}
             key={"chart-"+i}
           />
@@ -173,7 +177,7 @@ function BarViewController() {
         allowMultiple
         widget
       />
-      <div className="bar-container">{renderGraphs()}</div>
+      <div className="bar-container" rerender={props}>{renderGraphs()}</div>
     </>
   );
 }

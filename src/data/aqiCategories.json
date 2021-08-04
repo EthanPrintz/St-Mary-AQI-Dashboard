@@ -4,6 +4,10 @@
 		"hex":"#6CBE44",
 		"low": 0,
 		"high": 50,
+		"pm25low": 0,
+		"pm25high": 12,
+		"pm10low": 0,
+		"pm10high": 54,
 		"description": "Good",
 		"guidance": "Great day to be active outside!"
 	},
@@ -12,6 +16,10 @@
 		"hex":"#F1C510",
 		"low": 51,
 		"high": 100,
+		"pm25low": 12,
+		"pm25high": 35.4,
+		"pm10low": 54,
+		"pm10high": 154,
 		"description": "Moderate",
 		"guidance": "Good day to be active outside!<br><br>Community members who are unusually sensitive to air pollution could have symptoms."
 	},
@@ -20,6 +28,10 @@
 		"hex":"#F1C510",
 		"low": 101,
 		"high": 150,
+		"pm25low": 35.4,
+		"pm25high": 55.4,
+		"pm10low": 154,
+		"pm10high": 254,
 		"description": "Unhealthy for Sensitive Groups",
 		"guidance": "It’s OK to be active outside, especially for short activities such as recess and physical education (PE).<br><br>For longer activities such as sports or outdoor physical activities, take more breaks and do less intense activities.<br><br>Watch for symptoms and take action as needed.<br><br>Individuals should follow their asthma action plans and keep their quick-relief medicine handy."
 	},
@@ -28,6 +40,10 @@
 		"hex":"#E42027",
 		"low": 151,
 		"high": 200,
+		"pm25low": 55.4,
+		"pm25high": 150.4,
+		"pm10low": 254,
+		"pm10high": 354,
 		"description": "Unhealthy",
 		"guidance": "For all outdoor activities, take more breaks and do less intense activities.<br><br>Consider moving longer or more intense activities indoors or rescheduling them to another day or time.<br><br>Watch for symptoms and take action as needed.<br><br>Individuals should follow their asthma action plans and keep their quick-relief medicine handy."
 	},
@@ -36,6 +52,10 @@
 		"hex":"#9E519F",
 		"low": 201,
 		"high": 300,
+		"pm25low": 150.4,
+		"pm25high": 250.4,
+		"pm10low": 354,
+		"pm10high": 424,
 		"description": "Very Unhealthy",
 		"guidance": "Move all activities indoors or reschedule them to another day."
 	},
@@ -44,6 +64,10 @@
 		"hex": "#5E325F",
 		"low": 301,
 		"high": 500,
+		"pm25low": 250.4,
+		"pm25high": 500.4,
+		"pm10low": 454,
+		"pm10high": 604,
 		"description": "Hazardous",
 		"guidance": "Move all activities indoors or reschedule them to another day."
 	}

@@ -13,3 +13,24 @@ export const convertAQIToColor = (aqi) => {
   });
   return returnHex;
 };
+
+export const convertPM25ToColor = (aqi) => {
+  let returnHex = '';
+  aqiCategories.forEach((cat) => {
+    if (cat.pm25low <= aqi && cat.pm25high >= aqi) {
+      returnHex = cat.hex;
+    }
+  });
+  return returnHex;
+};
+
+export const convertPM10ToColor = (aqi) => {
+  let returnHex = '';
+  aqiCategories.forEach((cat) => {
+    if (cat.pm10low <= aqi && cat.pm10high >= aqi) {
+      returnHex = cat.hex;
+    }
+  });
+  return returnHex;
+};
+

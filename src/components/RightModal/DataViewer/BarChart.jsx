@@ -15,7 +15,8 @@ class BarChart extends React.Component {
     this.height = this.props.dimensions[1];
     this.margin = this.props.dimensions[2];
 
-    this.max = 150
+
+    this.max = 100
 
     if (!document.getElementById('tooltip')) {
       var tooltip = d3
@@ -60,7 +61,7 @@ class BarChart extends React.Component {
         if (this.props.gray) {
           return "#909090";
         } else {
-		  return  convertAQIToColor(d);
+		  return  this.props.colorFunc(d);
         }
       })
       .on("mouseover", function (event, d) {
@@ -96,7 +97,7 @@ class BarChart extends React.Component {
         if (this.props.gray) {
           return "#909090";
         } else {
-		  return  convertAQIToColor(d);
+		  return  this.props.colorFunc(d);
         }
       });
   }
@@ -137,7 +138,7 @@ class BarChart extends React.Component {
         if (this.props.gray) {
           return "#909090";
         } else {
-		  return  convertAQIToColor(d);
+		  return  this.props.colorFunc(d);
         }
       })
       .attr("rx", this.width / this.props.data.length / 3)

@@ -23,8 +23,8 @@ function CSVModal(props) {
   const [airFactors, setAirFactors] = useState([
     { value: "PM 2.5", checked: false },
     { value: "PM 10", checked: false },
-    { value: "Temperature", checked: false },
-    { value: "Humidity", checked: false },
+    //{ value: "Temperature", checked: false },
+    //{ value: "Humidity", checked: false },
   ]);
 
   const [intervals, setIntervals] = useState([

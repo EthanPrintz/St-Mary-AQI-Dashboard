@@ -17,7 +17,9 @@ function DataViewer(props) {
         liveAQI={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].liveAQI : "-"}
         liveSensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors : []}
       />
-      <BarViewController />
+      <BarViewController
+        sensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors.map((x) => x.id) : []}
+      />
     </div>
   );
 }
