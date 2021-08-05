@@ -9,6 +9,7 @@ function DataViewer(props) {
     window.screen.width * 0.12,
     window.screen.width * 0.01,
   ];
+  console.log(props)
 
   return (
     <div className="body-content">
@@ -18,7 +19,7 @@ function DataViewer(props) {
         liveSensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors : []}
       />
       <BarViewController
-        sensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors.map((x) => x.id) : []}
+        sensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors.map((x) => x["openaq-id"]) : []}
       />
     </div>
   );

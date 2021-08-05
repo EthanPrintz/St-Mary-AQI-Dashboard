@@ -19,10 +19,22 @@ function reduceArr(arr, newsize){
     let start = Math.round(mult*i)
     let end = Math.round(mult*(i+1))
     let avg = arr.slice(start, end).reduce((a,b) => a+b, 0) / (end - start)
-    avg = avg.toFixed(1)
     newarr.push(avg)
   }
   return newarr
+}
+
+function avgAcrossMultiArr(arr){
+  let toret = []
+  for(let i = 0; i < arr[0].length; i++){
+	let avg = 0
+	for(let j = 0; j < arr.length; j++){
+	  avg += arr[j][i]
+	}
+	avg /= arr.length;
+	toret.push(avg.toFixed(1))
+  }
+  return toret;
 }
 
 function BarViewController(props) {
@@ -65,7 +77,7 @@ function BarViewController(props) {
       'https://u50g7n0cbj.execute-api.us-east-1.amazonaws.com/v2/measurements?format=json&';
 
     const queries = [];
-    console.log(props)
+    //console.log(props)
     const selectedSensors = props.sensors;
     const TODAY = new Date();
     let currTS = timespanState.filter((item) => item.checked)[0]
@@ -107,39 +119,44 @@ function BarViewController(props) {
       queries.push(`${BASE_URL}${parameters.join('&')}`);
     });
 
-    console.log(queries);
-
-    const response = axios.get(queries[0]);
-
-    response.then((raw) => {
-      let data = raw.data.results;
-      console.log(data)
-
-      //pm25
-      let pm25 = data
-        .filter((item) => item.parameter === 'pm25')
-        .map((item) => item.value);
-      //pm10
-      let pm10 = data
-        .filter((item) => item.parameter === 'pm10')
-        .map((item) => item.value);
-
-      pm25 = reduceArr(pm25, 20)
-      pm10 = reduceArr(pm10, 20)
+    //console.log(queries);
+    if(queries.length === 0){
+	  return
+	}
+    const response = axios.all(queries.map((x) => axios.get(x)))
+    response.then(axios.spread((...raw) => {
+	  raw = raw.map((item) => item.data.results)
 	
+
+	  let pm25raw = []
+	  let pm10raw = []
+	  raw.forEach((arr) => {
+		//console.log(arr)
+	    pm25raw.push(reduceArr(arr.filter((item) => item.parameter == 'pm25').map((item) => item.value), 20))
+	    pm10raw.push(reduceArr(arr.filter((item) => item.parameter == 'pm10').map((item) => item.value), 20))
+	  })
+	  //console.log(pm25raw)
+	  if(pm25raw.length === 0 && pm10raw.length === 0){
+	    return;
+	  }
+	  
+	  let pm25 = avgAcrossMultiArr(pm25raw)
+	  let pm10 = avgAcrossMultiArr(pm10raw)
+	  //console.log(pm25)
       let temp = JSON.parse(JSON.stringify(displayedDataSets));
       temp.graphs["PM 2.5"].data = pm25
       temp.graphs["PM 10"].data = pm10
       setDisplayedDataSets(temp)
+	  return;
 
-    });
+	}));
   }
 
   function renderGraphs() {
     const barChartComponents = [];
     airFactors.forEach((airFactor,i) => {
       if (airFactor.checked) {
-        console.log(airFactor.value)
+        //console.log(airFactor.value)
         barChartComponents.push(
           <BarChart
             className="hidden"
@@ -158,7 +175,7 @@ function BarViewController(props) {
   
   useEffect(() => {
     updateSensorData(); 
-  },[]);
+  },[props]);
 
   return (
     <>

@@ -8,14 +8,17 @@
 			"long": -76.6758535,
 			"sensors": [
 				{
+					"openaq-id": 224506,
 					"id": 93013,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 224503,
 					"id": 93015,
 					"name": "Front Sensor"
 				},
 				{
+					"openaq-id": 224505,
 					"id": 93025,
 					"name": "Right Side Sensor"
 				}
@@ -30,10 +33,12 @@
 			"long": -76.6363073,
 			"sensors": [
 				{
+					"openaq-id": 224591,
 					"id": 90659,
 					"name": "Front Right Sensor"
 				},
 				{
+					"openaq-id": 224592,
 					"id": 93027,
 					"name": "Front Left Sensor"
 				}
@@ -48,14 +53,17 @@
 			"long": -76.7591032,
 			"sensors": [
 				{
+					"openaq-id": 224502,
 					"id": 92421,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 224500,
 					"id": 92425,
 					"name": "Right Side Sensor"
 				},
 				{
+					"openaq-id": 224499,
 					"id": 93021,
 					"name": "Front Sensor"
 				}
@@ -70,10 +78,12 @@
 			"long": -76.5633583,
 			"sensors": [
 				{
+					"openaq-id": 224745,
 					"id": 92437,
 					"name": "Front Left Sensor"
 				},
 				{
+					"openaq-id": 224746,
 					"id": 92427,
 					"name": "Front Right Sensor"
 				}
@@ -88,14 +98,17 @@
 			"long": -76.4798641,
 			"sensors": [
 				{
+					"openaq-id": 225053,
 					"id": 93019,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 225052,
 					"id": 90589,
 					"name": "Right Side Sensor"
 				},
 				{
+					"openaq-id": 225051,
 					"id": 85659,
 					"name": "Front Sensor"
 				}
@@ -110,14 +123,17 @@
 			"long": -76.4825953,
 			"sensors": [
 				{
+					"openaq-id": 224759,
 					"id": 90687,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 224758,
 					"id": 92701,
 					"name": "Front Right Sensor"
 				},
 				{
+					"openaq-id": 224758,
 					"id": 85473,
 					"name": "Front Left Sensor"
 				}
@@ -132,14 +148,17 @@
 			"long": -76.4930985,
 			"sensors": [
 				{
+					"openaq-id": 224761,
 					"id": 90647,
 					"name": "Right Sensor"
 				},
 				{
+					"openaq-id": 224760,
 					"id": 92559,
 					"name": "Front Sensor"
 				},
 				{
+					"openaq-id": 224762,
 					"id": 92325,
 					"name": "Left Sensor"
 				}
@@ -154,14 +173,17 @@
 			"long": -76.5421879,
 			"sensors": [
 				{
+					"openaq-id": 225048,
 					"id": 92833,
 					"name": "Front Right Sensor"
 				},
 				{
+					"openaq-id": 224742,
 					"id": 90849,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 224743,
 					"id": 85455,
 					"name": "Front Left Sensor"
 				}
@@ -176,14 +198,17 @@
 			"long": -76.6392651,
 			"sensors": [
 				{
+					"openaq-id": 224587,
 					"id": 90645,
 					"name": "Front Left Sensor"
 				},
 				{
+					"openaq-id": 224588,
 					"id": 92745,
 					"name": "Front Right Sensor"
 				},
 				{
+					"openaq-id": 224589,
 					"id": 83855,
 					"name": "Back Sensor"
 				}
@@ -198,14 +223,17 @@
 			"long": -76.7676672,
 			"sensors": [
 				{
+					"openaq-id": 221414,
 					"id": 92271,
 					"name": "Front Sensor"
 				},
 				{
+					"openaq-id": 221415,
 					"id": 91277,
 					"name": "Side Sensor"
 				},
 				{
+					"openaq-id": 221416,
 					"id": 92885,
 					"name": "Back Sensor"
 				}
@@ -220,14 +248,17 @@
 			"long": -76.6464347,
 			"sensors": [
 				{
+					"openaq-id": 225033,
 					"id": 92281,
 					"name": "Back Sensor"
 				},
 				{
+					"openaq-id": 225034,
 					"id": 90881,
 					"name": "Left Side Sensor"
 				},
 				{
+					"openaq-id": 225031,
 					"id": 92245,
 					"name": "Front Sensor"
 				}
