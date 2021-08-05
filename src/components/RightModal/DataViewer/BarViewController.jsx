@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import BarChart from "./BarChart";
 import ParamSelector from "../ParamSelector";
 import axios from 'axios';
-import { convertPM25ToColor, convertPM10ToColor  } from '../../../utils/conversions';
+import { convertPM25ToColor, convertPM10ToColor, convertRemToPixels  } from '../../../utils/conversions';
 
 let GRAPH_DIMENSIONS = [
-  window.screen.width * 0.24,
-  window.screen.width * 0.07,
-  window.screen.width * 0.01,
+  convertRemToPixels(20),
+  convertRemToPixels(7),
+  convertRemToPixels(1),
 ];
 
 function reduceArr(arr, newsize){
