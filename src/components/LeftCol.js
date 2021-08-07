@@ -4,7 +4,7 @@ import { ReactComponent as OpenAQ } from '../assets/logos/openaq-logo.svg';
 import { ReactComponent as StMary } from '../assets/logos/st-mary-logo.svg';
 import SchoolContainer from './SchoolContainer';
 
-function LeftCol({ combinedData, setSelectedSchoolID }) {
+function LeftCol({ combinedData, selectedSchoolID, setSelectedSchoolID }) {
   return (
     <Container>
       <LeftColHeader>
@@ -15,6 +15,36 @@ function LeftCol({ combinedData, setSelectedSchoolID }) {
           <StMaryLogo />
         </a>
       </LeftColHeader>
+      <SectionTitle>High Schools</SectionTitle>
+      {combinedData
+        .filter((school) => school.category === 'High')
+        .map((school, i) => {
+          return (
+            <SchoolContainer
+              schoolName={school.name}
+              key={'school-' + i}
+              aqi={school.liveAQI}
+              setSelectedSchoolID={setSelectedSchoolID}
+              schoolCode={school.id}
+              selectedSchoolID={selectedSchoolID}
+            />
+          );
+        })}
+      <SectionTitle>Middle Schools</SectionTitle>
+      {combinedData
+        .filter((school) => school.category === 'Middle')
+        .map((school, i) => {
+          return (
+            <SchoolContainer
+              schoolName={school.name}
+              key={'school-' + i}
+              aqi={school.liveAQI}
+              setSelectedSchoolID={setSelectedSchoolID}
+              schoolCode={school.id}
+              selectedSchoolID={selectedSchoolID}
+            />
+          );
+        })}
       <SectionTitle>Elementary Schools</SectionTitle>
       {combinedData
         .filter((school) => school.category === 'Elementary')
@@ -22,21 +52,35 @@ function LeftCol({ combinedData, setSelectedSchoolID }) {
           return (
             <SchoolContainer
               schoolName={school.name}
-			  key={"school-" + i}
+              key={'school-' + i}
               aqi={school.liveAQI}
-              onClick={() => setSelectedSchoolID(school.id)}
+              setSelectedSchoolID={setSelectedSchoolID}
+              schoolCode={school.id}
+              selectedSchoolID={selectedSchoolID}
             />
           );
         })}
-      <SectionTitle>Middle Schools</SectionTitle>
-      <SectionTitle>High Schools</SectionTitle>
       <SectionTitle>Other Facilities</SectionTitle>
+      {combinedData
+        .filter((school) => school.category === 'Other')
+        .map((school, i) => {
+          return (
+            <SchoolContainer
+              schoolName={school.name}
+              key={'school-' + i}
+              aqi={school.liveAQI}
+              setSelectedSchoolID={setSelectedSchoolID}
+              schoolCode={school.id}
+              selectedSchoolID={selectedSchoolID}
+            />
+          );
+        })}
     </Container>
   );
 }
 
 const Container = styled.div`
-  width: 18.5rem;
+  width: 16.5rem;
   height: 92vh;
   position: absolute;
   z-index: 3;
@@ -44,6 +88,7 @@ const Container = styled.div`
   left: 4vh;
   border-radius: 2rem;
   background-color: #f4f4f4;
+  overflow-y: scroll;
 `;
 
 const LeftColHeader = styled.div`
@@ -62,16 +107,16 @@ const LeftColHeader = styled.div`
 `;
 
 const OpenAQLogo = styled(OpenAQ)`
-  height: 4rem;
-  width: 4rem;
+  height: 3.2rem;
+  width: 3.2rem;
 `;
 const StMaryLogo = styled(StMary)`
-  height: 2.75rem;
-  width: 12rem;
+  height: 2.2rem;
+  width: 9.6rem;
 `;
 const SectionTitle = styled.div`
   font-family: 'Vickey', 'PT Serif', serif;
-  font-size: 1.1rem;
+  font-size: 0.92rem;
   width: 100%;
   padding: 0.7rem;
   color: #616161;
