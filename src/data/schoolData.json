@@ -9,17 +9,17 @@
 			"sensors": [
 				{
 					"openaq-id": 224506,
-					"id": 93013,
+					"purple-air-id": 93013,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 224503,
-					"id": 93015,
+					"purple-air-id": 93015,
 					"name": "Front Sensor"
 				},
 				{
 					"openaq-id": 224505,
-					"id": 93025,
+					"purple-air-id": 93025,
 					"name": "Right Side Sensor"
 				}
 			]
@@ -34,12 +34,12 @@
 			"sensors": [
 				{
 					"openaq-id": 224591,
-					"id": 90659,
+					"purple-air-id": 90659,
 					"name": "Front Right Sensor"
 				},
 				{
 					"openaq-id": 224592,
-					"id": 93027,
+					"purple-air-id": 93027,
 					"name": "Front Left Sensor"
 				}
 			]
@@ -54,17 +54,17 @@
 			"sensors": [
 				{
 					"openaq-id": 224502,
-					"id": 92421,
+					"purple-air-id": 92421,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 224500,
-					"id": 92425,
+					"purple-air-id": 92425,
 					"name": "Right Side Sensor"
 				},
 				{
 					"openaq-id": 224499,
-					"id": 93021,
+					"purple-air-id": 93021,
 					"name": "Front Sensor"
 				}
 			]
@@ -79,12 +79,12 @@
 			"sensors": [
 				{
 					"openaq-id": 224745,
-					"id": 92437,
+					"purple-air-id": 92437,
 					"name": "Front Left Sensor"
 				},
 				{
 					"openaq-id": 224746,
-					"id": 92427,
+					"purple-air-id": 92427,
 					"name": "Front Right Sensor"
 				}
 			]
@@ -99,17 +99,17 @@
 			"sensors": [
 				{
 					"openaq-id": 225053,
-					"id": 93019,
+					"purple-air-id": 93019,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 225052,
-					"id": 90589,
+					"purple-air-id": 90589,
 					"name": "Right Side Sensor"
 				},
 				{
 					"openaq-id": 225051,
-					"id": 85659,
+					"purple-air-id": 85659,
 					"name": "Front Sensor"
 				}
 			]
@@ -124,17 +124,17 @@
 			"sensors": [
 				{
 					"openaq-id": 224759,
-					"id": 90687,
+					"purple-air-id": 90687,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 224758,
-					"id": 92701,
+					"purple-air-id": 92701,
 					"name": "Front Right Sensor"
 				},
 				{
 					"openaq-id": 224758,
-					"id": 85473,
+					"purple-air-id": 85473,
 					"name": "Front Left Sensor"
 				}
 			]
@@ -149,17 +149,17 @@
 			"sensors": [
 				{
 					"openaq-id": 224761,
-					"id": 90647,
+					"purple-air-id": 90647,
 					"name": "Right Sensor"
 				},
 				{
 					"openaq-id": 224760,
-					"id": 92559,
+					"purple-air-id": 92559,
 					"name": "Front Sensor"
 				},
 				{
 					"openaq-id": 224762,
-					"id": 92325,
+					"purple-air-id": 92325,
 					"name": "Left Sensor"
 				}
 			]
@@ -174,17 +174,17 @@
 			"sensors": [
 				{
 					"openaq-id": 225048,
-					"id": 92833,
+					"purple-air-id": 92833,
 					"name": "Front Right Sensor"
 				},
 				{
 					"openaq-id": 224742,
-					"id": 90849,
+					"purple-air-id": 90849,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 224743,
-					"id": 85455,
+					"purple-air-id": 85455,
 					"name": "Front Left Sensor"
 				}
 			]
@@ -199,17 +199,17 @@
 			"sensors": [
 				{
 					"openaq-id": 224587,
-					"id": 90645,
+					"purple-air-id": 90645,
 					"name": "Front Left Sensor"
 				},
 				{
 					"openaq-id": 224588,
-					"id": 92745,
+					"purple-air-id": 92745,
 					"name": "Front Right Sensor"
 				},
 				{
 					"openaq-id": 224589,
-					"id": 83855,
+					"purple-air-id": 83855,
 					"name": "Back Sensor"
 				}
 			]
@@ -224,17 +224,17 @@
 			"sensors": [
 				{
 					"openaq-id": 221414,
-					"id": 92271,
+					"purple-air-id": 92271,
 					"name": "Front Sensor"
 				},
 				{
 					"openaq-id": 221415,
-					"id": 91277,
+					"purple-air-id": 91277,
 					"name": "Side Sensor"
 				},
 				{
 					"openaq-id": 221416,
-					"id": 92885,
+					"purple-air-id": 92885,
 					"name": "Back Sensor"
 				}
 			]
@@ -249,18 +249,418 @@
 			"sensors": [
 				{
 					"openaq-id": 225033,
-					"id": 92281,
+					"purple-air-id": 92281,
 					"name": "Back Sensor"
 				},
 				{
 					"openaq-id": 225034,
-					"id": 90881,
+					"purple-air-id": 90881,
 					"name": "Left Side Sensor"
 				},
 				{
 					"openaq-id": 225031,
-					"id": 92245,
+					"purple-air-id": 92245,
 					"name": "Front Sensor"
+				}
+			]
+		},
+		{
+			"id": 12,
+			"name": "Mechanicsville Elementary School",
+			"abbreviation": "MES",
+			"category": "Elementary",
+			"lat": 38.4531739,
+			"long": -76.7545612,
+			"sensors": [
+				{
+					"openaq-id": 224489,
+					"purple-air-id": 92679,
+					"name": "Back Sensor"
+				},
+				{
+					"openaq-id": 224488,
+					"purple-air-id": 92999,
+					"name": "Left Side Sensor"
+				},
+				{
+					"openaq-id": 224487,
+					"purple-air-id": 92687,
+					"name": "Front Sensor"
+				}
+			]
+		},
+		{
+			"id": 13,
+			"name": "Oakville Elementary School",
+			"abbreviation": "OES",
+			"category": "Elementary",
+			"lat": 38.3945035,
+			"long": -76.6464347,
+			"sensors": [
+				{
+					"openaq-id": 224740,
+					"purple-air-id": 89235,
+					"name": "Front Right Sensor"
+				},
+				{
+					"openaq-id": 224741,
+					"purple-air-id": 92279,
+					"name": "Back Sensor"
+				},
+				{
+					"openaq-id": 224739,
+					"purple-air-id": 92795,
+					"name": "Front Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 14,
+			"name": "Park Hall Elementary School",
+			"abbreviation": "PHES",
+			"category": "Elementary",
+			"lat": 38.2240115,
+			"long": -76.4518582,
+			"sensors": [
+				{
+					"openaq-id": 225038,
+					"purple-air-id": 92881,
+					"name": "Back Right Sensor"
+				},
+				{
+					"openaq-id": 225036,
+					"purple-air-id": 91393,
+					"name": "Front Left Sensor"
+				},
+				{
+					"openaq-id": 225037,
+					"purple-air-id": 92859,
+					"name": "Front Right Sensor"
+				}
+			]
+		},
+		{
+			"id": 15,
+			"name": "Piney Point Elementary School",
+			"abbreviation": "PPES",
+			"category": "Elementary",
+			"lat": 38.1667233,
+			"long": -76.5360991,
+			"sensors": [
+				{
+					"openaq-id": 224763,
+					"purple-air-id": 92291,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224764,
+					"purple-air-id": 90655,
+					"name": "Right Sensor"
+				},
+				{
+					"openaq-id": 224765,
+					"purple-air-id": 90599,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 16,
+			"name": "Ridge Elementary School",
+			"abbreviation": "RES",
+			"category": "Elementary",
+			"lat": 38.1105587,
+			"long": -76.3655162,
+			"sensors": [
+				{
+					"openaq-id": 225042,
+					"purple-air-id": 91809,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 225043,
+					"purple-air-id": 92793,
+					"name": "Left Side Sensor"
+				},
+				{
+					"openaq-id": 225044,
+					"purple-air-id": 90635,
+					"name": "Right Side Sensor"
+				}
+			]
+		},
+		{
+			"id": 17,
+			"name": "Town Creek Elementary School",
+			"abbreviation": "TCES",
+			"category": "Elementary",
+			"lat": 38.302936,
+			"long": -76.4911319,
+			"sensors": [
+				{
+					"openaq-id": 224748,
+					"purple-air-id": 91811,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224750,
+					"purple-air-id": 92803,
+					"name": "Back Left Sensor"
+				},
+				{
+					"openaq-id": 224749,
+					"purple-air-id": 91819,
+					"name": "Front Right Sensor"
+				}
+			]
+		},
+		{
+			"id": 18,
+			"name": "White Marsh Elementary School",
+			"abbreviation": "WMES",
+			"category": "Elementary",
+			"lat": 38.4670458,
+			"long": -76.7762817,
+			"sensors": [
+				{
+					"openaq-id": 224478,
+					"purple-air-id": 91383,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224486,
+					"purple-air-id": 92785,
+					"name": "Left Side Sensor"
+				},
+				{
+					"openaq-id": 225054,
+					"purple-air-id": 92747,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 19,
+			"name": "Margaret Brent Middle School",
+			"abbreviation": "MBMS",
+			"category": "Middle",
+			"lat": 38.3799173,
+			"long": -76.7161651,
+			"sensors": [
+				{
+					"openaq-id": 224741,
+					"purple-air-id": 92827,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224492,
+					"purple-air-id": 92883,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 20,
+			"name": "Spring Ridge Middle School",
+			"abbreviation": "SRMS",
+			"category": "Middle",
+			"lat": 38.2122472,
+			"long": -76.4012935,
+			"sensors": [
+				{
+					"openaq-id": 225039,
+					"purple-air-id": 92789,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 225040,
+					"purple-air-id": 91347,
+					"name": "Right Side Sensor"
+				},
+				{
+					"openaq-id": 225041,
+					"purple-air-id": 92821,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 21,
+			"name": "Esperanza Middle School",
+			"abbreviation": "EMS",
+			"category": "Middle",
+			"lat": 38.2926091,
+			"long": -76.4889685,
+			"sensors": [
+				{
+					"openaq-id": 224752,
+					"purple-air-id": 92689,
+					"name": "Front Left Sensor"
+				},
+				{
+					"openaq-id": 224753,
+					"purple-air-id": 92969,
+					"name": "Front Right Sensor"
+				},
+				{
+					"openaq-id": 224755,
+					"purple-air-id": 83993,
+					"name": "Back Left Sensor"
+				}
+			]
+		},
+		{
+			"id": 22,
+			"name": "Leonardtown Middle School",
+			"abbreviation": "LMS",
+			"category": "Middle",
+			"lat": 38.2738933,
+			"long": -76.6122046,
+			"sensors": [
+				{
+					"openaq-id": 224735,
+					"purple-air-id": 92415,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224736,
+					"purple-air-id": 93017,
+					"name": "Right Side Sensor"
+				},
+				{
+					"openaq-id": 224738,
+					"purple-air-id": 92855,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 23,
+			"name": "Chesapeake Public Charter School",
+			"abbreviation": "CPCS",
+			"category": "Middle",
+			"lat": 38.2429941,
+			"long": -76.4929258,
+			"sensors": [
+				{
+					"openaq-id": 227468,
+					"purple-air-id": 92869,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 227469,
+					"purple-air-id": 91803,
+					"name": "Left Sensor"
+				},
+				{
+					"openaq-id": 227470,
+					"purple-air-id": 92799	,
+					"name": "Right Side Sensor"
+				}
+			]
+		},
+		{
+			"id": 24,
+			"name": "Chopticon High School",
+			"abbreviation": "CHS",
+			"category": "High",
+			"lat": 38.3595688,
+			"long": -76.7063079,
+			"sensors": [
+				{
+					"openaq-id": 224495,
+					"purple-air-id": 91329,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 224496,
+					"purple-air-id": 90641,
+					"name": "Left Side Sensor"
+				},
+				{
+					"openaq-id": 224497,
+					"purple-air-id": 90629	,
+					"name": "Back Sensor"
+				}
+			]
+		},
+		{
+			"id": 25,
+			"name": "Great Mills High School",
+			"abbreviation": "GMHS",
+			"category": "High",
+			"lat": 38.2474355,
+			"long": -76.4874175,
+			"sensors": [
+				{
+					"openaq-id": 225029,
+					"purple-air-id": 90817,
+					"name": "Front Sensor"
+				}
+			]
+		},
+		{
+			"id": 26,
+			"name": "Leonardtown High School",
+			"abbreviation": "LHS",
+			"category": "High",
+			"lat": 38.2696812,
+			"long": -76.61129,
+			"sensors": [
+				{
+					"openaq-id": 225045,
+					"purple-air-id": 92695,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 225046,
+					"purple-air-id": 92683,
+					"name": "Left Side Sensor"
+				},
+				{
+					"openaq-id": 225047,
+					"purple-air-id": 92769,
+					"name": "Right Side Sensor"
+				}
+			]
+		},
+		{
+			"id": 27,
+			"name": "Fairlead Academy",
+			"abbreviation": "FLA",
+			"category": "High",
+			"lat": 38.2405204,
+			"long": -76.4945314,
+			"sensors": [
+				{
+					"openaq-id": 225025,
+					"purple-air-id": 92289,
+					"name": "Front Sensor"
+				},
+				{
+					"openaq-id": 225027,
+					"purple-air-id": 93001,
+					"name": "Back Left Sensor"
+				},
+				{
+					"openaq-id": 225028,
+					"purple-air-id": 92285,
+					"name": "Back Right Sensor"
+				}
+			]
+		},
+		{
+			"id": 35,
+			"name": "St. Mary's College",
+			"abbreviation": "SMC",
+			"category": "Other",
+			"lat": 38.186476,
+			"long": -76.419364,
+			"sensors": [
+				{
+					"openaq-id": 222221,
+					"purple-air-id": 92807,
+					"name": "Jamie L. Roberts Stadium"
 				}
 			]
 		}
