@@ -22,8 +22,13 @@ function App() {
         let sensor = sensorData.find(
           (liveSensor) => liveSensor.ID === schoolSensor['purple-air-id']
         );
-        schoolSensor.liveAQI = sensor.AQI;
-        schoolSensor.livePM25 = sensor.pm2_5_current;
+        try {
+          schoolSensor.liveAQI = sensor.AQI;
+          schoolSensor.livePM25 = sensor.pm2_5_current;
+        } catch {
+          schoolSensor.liveAQI = 0;
+          schoolSensor.livePM25 = 0;
+        }
       });
       // Get average PM 2.5 of all school's sensors
       school.livePM25 = Math.round(
@@ -44,10 +49,12 @@ function App() {
       <LeftCol
         combinedData={combinedData}
         setSelectedSchoolID={setSelectedSchoolID}
+        selectedSchoolID={selectedSchoolID}
       />
       <Map
         combinedData={combinedData}
         setSelectedSchoolID={setSelectedSchoolID}
+        selectedSchoolID={selectedSchoolID}
       />
       {selectedSchoolID !== 0 && (
         <RightModal
