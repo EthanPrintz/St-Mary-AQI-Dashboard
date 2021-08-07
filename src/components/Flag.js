@@ -5,7 +5,6 @@ import { convertRemToPixels, convertAQIToColor } from '../utils/conversions';
 
 function Flag({ lat, long, aqi, schoolCode, setSelectedSchoolID }) {
   let color = convertAQIToColor(aqi);
-  console.log('Marker', schoolCode);
   return (
     <FlagMarker
       latitude={lat}

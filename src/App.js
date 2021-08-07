@@ -20,7 +20,7 @@ function App() {
       // Construct array of sensor data for each school
       school.sensors.forEach((schoolSensor) => {
         let sensor = sensorData.find(
-          (liveSensor) => liveSensor.ID === schoolSensor.id
+          (liveSensor) => liveSensor.ID === schoolSensor['purple-air-id']
         );
         schoolSensor.liveAQI = sensor.AQI;
         schoolSensor.livePM25 = sensor.pm2_5_current;
@@ -39,15 +39,6 @@ function App() {
     setCombinedData(schoolData);
   }, []);
 
-
-  useEffect(
-    (selectedSchoolID) => {
-      console.log('School ID changed to', selectedSchoolID);
-    },
-    [selectedSchoolID]
-  );
-
-
   return (
     <AppContainer>
       <LeftCol
@@ -58,10 +49,12 @@ function App() {
         combinedData={combinedData}
         setSelectedSchoolID={setSelectedSchoolID}
       />
-      <RightModal 
-        combinedData={combinedData}
-        selectedSchoolID={selectedSchoolID}
-      />
+      {selectedSchoolID !== 0 && (
+        <RightModal
+          combinedData={combinedData}
+          selectedSchoolID={selectedSchoolID}
+        />
+      )}
     </AppContainer>
   );
 }
