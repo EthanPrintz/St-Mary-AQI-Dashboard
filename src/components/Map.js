@@ -4,7 +4,7 @@ import MapGL from 'react-map-gl';
 import Flag from './Flag';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-function Map({ combinedData, setSelectedSchoolID }) {
+function Map({ combinedData, setSelectedSchoolID, selectedSchoolID }) {
   const [viewport, setViewport] = useState({
     latitude: 38.21499,
     longitude: -76.534533,
@@ -24,10 +24,11 @@ function Map({ combinedData, setSelectedSchoolID }) {
             aqi={school.liveAQI}
             schoolCode={school.id}
             setSelectedSchoolID={setSelectedSchoolID}
+            selectedSchoolID={selectedSchoolID}
           />
         );
       }),
-    [combinedData]
+    [combinedData, setSelectedSchoolID]
   );
 
   return (

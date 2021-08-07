@@ -1,3 +1,15 @@
+/* Font Imports */
+/* Vickey */
+@font-face {
+  font-family: 'Vickey';
+  src: local('Vickey'), url('./assets/fonts/vickey/Vickey-Bold.otf');
+}
+@font-face {
+  font-family: 'PT Serif';
+  src: local('PT Serif'),
+    url('./assets/fonts/pt-serif/PTSerif-Bold.ttf') format('truetype');
+}
+
 body {
   margin: 0;
   padding: 0;

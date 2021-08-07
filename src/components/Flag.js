@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import { Marker } from 'react-map-gl';
 import { convertRemToPixels, convertAQIToColor } from '../utils/conversions';
 
-function Flag({ lat, long, aqi, schoolCode, setSelectedSchoolID }) {
+function Flag({
+  lat,
+  long,
+  aqi,
+  schoolCode,
+  setSelectedSchoolID,
+  selectedSchoolID,
+}) {
   let color = convertAQIToColor(aqi);
   return (
     <FlagMarker
@@ -15,6 +22,8 @@ function Flag({ lat, long, aqi, schoolCode, setSelectedSchoolID }) {
       offsetLeft={-1 * convertRemToPixels(1)}
       offsetTop={-1 * convertRemToPixels(2.2)}
       onClick={() => setSelectedSchoolID(schoolCode)}
+      selectedSchoolID={selectedSchoolID}
+      schoolCode={schoolCode}
     >
       <svg
         viewBox="0 0 1248 1080"
@@ -58,6 +67,10 @@ function Flag({ lat, long, aqi, schoolCode, setSelectedSchoolID }) {
 const FlagMarker = styled(Marker)`
   width: 3rem;
   height: 3rem;
+  filter: ${(props) =>
+    props.selectedSchoolID === props.schoolCode
+      ? 'drop-shadow(-0.1rem 0.1rem 0px #616161) drop-shadow(0.1rem -0.1rem 0px #616161) drop-shadow(-0.1rem -0.1rem 0px #616161)'
+      : ''};
 `;
 
 export default Flag;
