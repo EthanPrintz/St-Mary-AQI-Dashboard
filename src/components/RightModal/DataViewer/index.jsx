@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import BarViewController from "./BarViewController";
 import CurrentSensorDisplay from "./CurrentSensorDisplay";
+import { convertRemToPixels  } from '../../../utils/conversions';
 import "./style.scss"
 
 function DataViewer(props) {
   let sensorDimensions = [
-    window.screen.width * 0.24,
-    window.screen.width * 0.12,
-    window.screen.width * 0.01,
+    convertRemToPixels(24),
+    convertRemToPixels(12),
+    convertRemToPixels(1),
   ];
+  console.log(props)
 
   return (
     <div className="body-content">
@@ -17,7 +19,9 @@ function DataViewer(props) {
         liveAQI={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].liveAQI : "-"}
         liveSensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors : []}
       />
-      <BarViewController />
+      <BarViewController
+        sensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors.map((x) => x["openaq-id"]) : []}
+      />
     </div>
   );
 }
