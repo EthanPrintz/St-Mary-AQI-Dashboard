@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import BarViewController from "./BarViewController";
-import CurrentSensorDisplay from "./CurrentSensorDisplay";
-import { convertRemToPixels  } from '../../../utils/conversions';
-import "./style.scss"
+import React, { useEffect } from 'react';
+import BarViewController from './BarViewController';
+import CurrentSensorDisplay from './CurrentSensorDisplay';
+import { convertRemToPixels } from '../../../utils/conversions';
+import './style.scss';
 
 function DataViewer(props) {
   let sensorDimensions = [
@@ -10,17 +10,27 @@ function DataViewer(props) {
     convertRemToPixels(12),
     convertRemToPixels(1),
   ];
-  console.log(props)
+  console.log(props);
+
+  const selectedSchool = props.combinedData.find(
+    (school) => school.id === props.selectedSchoolID
+  );
 
   return (
     <div className="body-content">
       <CurrentSensorDisplay
         dimensions={sensorDimensions}
-        liveAQI={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].liveAQI : "-"}
-        liveSensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors : []}
+        liveAQI={props.combinedData.length !== 0 ? selectedSchool.liveAQI : '-'}
+        liveSensors={
+          props.combinedData.length !== 0 ? selectedSchool.sensors : []
+        }
       />
       <BarViewController
-        sensors={props.combinedData.length !== 0 ? props.combinedData[props.selectedSchoolID].sensors.map((x) => x["openaq-id"]) : []}
+        sensors={
+          props.combinedData.length !== 0
+            ? selectedSchool.sensors.map((x) => x['openaq-id'])
+            : []
+        }
       />
     </div>
   );

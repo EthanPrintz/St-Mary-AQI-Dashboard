@@ -1,67 +1,70 @@
 .right-modal {
-    --border-radius: 30px;
+  --border-radius: 30px;
 
-    position: absolute;
-    top: 5vh;
-    right: 5vh;
-    z-index: 3;
-    
-    border-radius: var(--border-radius);
+  position: absolute;
+  top: 5vh;
+  right: 5vh;
+  z-index: 3;
 
-    min-height: 34vh;
-    width: 25rem;
-    
-    background-color: #f4f4f4;
-    font-family: "PT Sans";
-    
-    .header {
-        height: 40px;
-        background-color: #6CBE44;
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        text-align: center;
-        color: white;
-        font-size: 17pt;
+  border-radius: var(--border-radius);
 
+  min-height: 34vh;
+  width: 22rem;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  background-color: #f4f4f4;
+  font-family: 'PT Sans';
 
-        font-weight: bold;
+  .header {
+    height: 2.8rem;
+    background-color: #6cbe44;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    text-align: center;
+    color: white;
+    font-size: 1.15rem;
+    font-family: 'Vickey';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    .location-title {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 1.3rem;
     }
+  }
 
-    .body-content {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        padding: 15px var(--border-radius);
+  .body-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .footer {
+    height: 2.3rem;
+    background-color: #f9f9f9;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    font-weight: bold;
+    color: #909090;
+    border-top: 1px solid #ededed;
+    display: flex;
+
+    .switch-button-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-content: center;
+
+      cursor: pointer;
+
+      padding-left: 30px;
+
+      svg {
+        padding-right: 10px;
+      }
     }
-
-    .footer {
-        height: 40px;
-        background-color: #F9F9F9;
-        border-bottom-left-radius: var(--border-radius);
-        border-bottom-right-radius: var(--border-radius);
-
-        font-weight: bold;
-        color: #909090;
-
-        display: flex;
-
-        .switch-button-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            align-content: center;
-
-            cursor: pointer;
-
-            padding-left: 30px;
-
-            svg {
-                padding-right: 10px;
-            }
-        }
-    }
+  }
 }
