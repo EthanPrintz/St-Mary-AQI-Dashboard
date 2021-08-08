@@ -17,7 +17,7 @@ function checkedObject(item, itemChecked=false){
 
 function CSVModal(props) {
   const { sensors } = props;
-  const sensorIDs = {}
+  let sensorIDs = {}
   sensors.forEach((sensor) => {
     sensorIDs[sensor.name] = sensor["openaq-id"];
   });
@@ -55,6 +55,19 @@ function CSVModal(props) {
 
     setAbleToGetCSV(airFactorChosen && schoolChosen);
   }, [sensorOptions, airFactors, ableToGetCSV]);
+  
+  useEffect(() => {
+
+    const newsensors = props.sensors
+    sensorIDs = {}
+    newsensors.forEach((sensor) => {
+      sensorIDs[sensor.name] = sensor["openaq-id"];
+    });
+    const schoolSensors = newsensors.map((sensor) => checkedObject(sensor.name))
+	setSensorOptions(schoolSensors);
+
+
+  }, [props.sensors]);
 
   async function submitAPICalls(queries, selectedAirFactors) {
     const sensorAverages = [];

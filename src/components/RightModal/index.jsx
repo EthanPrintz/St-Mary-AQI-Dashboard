@@ -11,8 +11,6 @@ import SwitchSection from "./SwitchSection";
 function RightModal(props) {
   const [showDataCharts, setShowDataCharts] = useState(true);
   const { combinedData, selectedSchoolID } = props;
-  const schoolSensors = combinedData[selectedSchoolID - 1].sensors
-  console.log(schoolSensors)
   return (
     <div className="right-modal">
       <LocationTitle
@@ -36,7 +34,7 @@ function RightModal(props) {
         />
       ) : (
         <CSVModal
-          sensors={schoolSensors}
+          sensors={combinedData[selectedSchoolID - 1].sensors}
         />
       )}
       <SwitchSection
