@@ -10,7 +10,7 @@ function DataViewer(props) {
     convertRemToPixels(12),
     convertRemToPixels(1),
   ];
-  console.log(props);
+  // console.log(props);
 
   const selectedSchool = props.combinedData.find(
     (school) => school.id === props.selectedSchoolID

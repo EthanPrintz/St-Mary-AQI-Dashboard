@@ -6,7 +6,8 @@
   padding: 15px;
 
   &.widget {
-    padding: 5px;
+    padding: 0px;
+    width: 100%;
     background-color: #F4F4F4;
     width: 100%;
   }
@@ -14,6 +15,8 @@
 
 .selection-title-container {
   padding-bottom: 5px;
+  padding-left: 15px;
+  padding-top: 5px;
 
   .selection-title {
     font-size: 11pt;
@@ -28,8 +31,9 @@
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-
+  
   &.widget{
+    padding-left: 15px;
     justify-content: left;
   }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes, { number } from "prop-types";
 import "./style.scss";
 import ParamSelector from "../ParamSelector";
 import TimespanSelector from "../ParamSelector/TimespanSelector";
@@ -8,17 +7,25 @@ import { getAverage, createDataPointObj } from "./getAverage";
 import axios from "axios";
 
 const TODAY = new Date();
+
+function checkedObject(item, itemChecked=false){
+  return {
+    value: item,
+    checked: itemChecked
+  }
+}
+
 function CSVModal(props) {
+  const { sensors } = props;
+  const sensorIDs = {}
+  sensors.forEach((sensor) => {
+    sensorIDs[sensor.name] = sensor["openaq-id"];
+  });
+  console.log(sensorIDs);
+  const schoolSensors = sensors.map((sensor) => checkedObject(sensor.name))
+
   const [downloading, setDownloading] = useState(false);
-  const [sensorOptions, setSensorOptions] = useState([
-    // 224756, 225046 works
-    { value: "225029", checked: false },
-    { value: "224756", checked: false },
-    { value: "225046", checked: false },
-    { value: "beep2", checked: false },
-    { value: "beep3", checked: false },
-    { value: "beep4", checked: false },
-  ]);
+  const [sensorOptions, setSensorOptions] = useState(schoolSensors);
 
   const [airFactors, setAirFactors] = useState([
     { value: "PM 2.5", checked: false },
@@ -109,7 +116,6 @@ function CSVModal(props) {
 
   // follwing the format of { sensorName, sensorId, parameter, averagedDataIn_ug_m3 }
   function exportAsCSV(dataArray) {
-    console.log(dataArray);
     const header = "locationId,location,parameter,time,value in µg/m³";
     const dataRows = [];
     dataArray.forEach((sensorData) => {
@@ -143,7 +149,8 @@ function CSVModal(props) {
     const queries = [];
     const selectedSensors = sensorOptions
       .filter((item) => item.checked)
-      .map((item) => item.value);
+      .map((item) => sensorIDs[item.value]);
+
     const selectedFirstDate = JSON.stringify(firstDate).replaceAll('"', "");
     const selectedLastDate = JSON.stringify(lastDate).replaceAll('"', "");
 
@@ -171,7 +178,6 @@ function CSVModal(props) {
       exportAsCSV(sensorAverages);
       setDownloading(false);
     });
-    // console.log(exportAsCSV(sensorAverages));
   }
 
   return (
@@ -224,9 +230,5 @@ function CSVModal(props) {
     </div>
   );
 }
-
-CSVModal.propTypes = {
-  school: PropTypes.string.isRequired,
-};
 
 export default CSVModal;

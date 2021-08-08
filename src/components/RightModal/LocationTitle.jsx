@@ -1,14 +1,12 @@
 import React from "react";
-import { DISTRICT_MAPPING } from '../../utils/districtMapping';
 import { convertAQIToColor } from '../../utils/conversions';
 
 function LocationTitle(props){
-    const { location } = props;
-    const locationName = DISTRICT_MAPPING.stmarys.find((record) => record.abbreviation === location).name;
+    const { schoolName } = props;
 
     return (
       <header className="header" style={{"backgroundColor": convertAQIToColor(props.liveAQI)}}>
-        <span className="location-title">{props.schoolName}</span>
+        <span className="location-title">{schoolName}</span>
       </header>
     );
 }
