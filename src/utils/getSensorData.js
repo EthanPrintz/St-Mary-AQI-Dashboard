@@ -50,3 +50,20 @@ export const getLiveSensorData = async () => {
   const json = await response.json();
   return json.smchdSensors.data;
 };
+
+export const getCountyAQI = async () => {
+  // Set URL to query for live AQI data
+  const liveQueryURL =
+    // 'https://nqyzh7zcib.execute-api.us-east-1.amazonaws.com/prod/latest';
+    'https://utbo5or9sk.execute-api.us-east-1.amazonaws.com/dev/latest';
+  const response = await fetch(liveQueryURL);
+  const json = await response.json();
+  let sensorAvg = 0;
+  let numSensors = 0;
+  json.smchdSensors.data.forEach((sensor) => {
+    sensorAvg += sensor.AQI;
+    if (sensor.AQI > 0) numSensors++;
+  });
+  sensorAvg /= numSensors;
+  return sensorAvg;
+};

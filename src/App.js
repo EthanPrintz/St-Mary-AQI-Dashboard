@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LeftCol from './components/LeftCol';
 import RightModal from './components/RightModal';
+import MapControls from './components/MapControls/';
 import Map from './components/Map';
-import { getLiveSensorData } from './utils/getSensorData';
+import { getLiveSensorData, getCountyAQI } from './utils/getSensorData';
 import schoolDataJSON from './data/schoolData.json';
 import './App.css';
 
 function App() {
   const [combinedData, setCombinedData] = useState([]);
+  const [countyAQI, setCountyAQI] = useState(0);
   const [selectedSchoolID, setSelectedSchoolID] = useState(0);
+  const [mapType, setMapType] = useState('classic'); //Can be classic or satellite
 
   useEffect(async () => {
     // Get data from all sources
@@ -42,12 +45,14 @@ function App() {
       );
     });
     setCombinedData(schoolData);
+    setCountyAQI(Math.round(await getCountyAQI()));
   }, []);
 
   return (
     <AppContainer>
       <LeftCol
         combinedData={combinedData}
+        countyAQI={countyAQI}
         setSelectedSchoolID={setSelectedSchoolID}
         selectedSchoolID={selectedSchoolID}
       />
@@ -55,13 +60,18 @@ function App() {
         combinedData={combinedData}
         setSelectedSchoolID={setSelectedSchoolID}
         selectedSchoolID={selectedSchoolID}
+        mapType={mapType}
       />
       {selectedSchoolID !== 0 && (
-        <RightModal
-          combinedData={combinedData}
-          selectedSchoolID={selectedSchoolID}
-        />
+        <>
+          <RightModal
+            combinedData={combinedData}
+            selectedSchoolID={selectedSchoolID}
+            setSelectedSchoolID={setSelectedSchoolID}
+          />
+        </>
       )}
+      <MapControls setMapType={setMapType} mapType={mapType}></MapControls>
     </AppContainer>
   );
 }
@@ -73,5 +83,4 @@ const AppContainer = styled.div`
   margin: 0;
   background-color: grey;
 `;
-
 export default App;

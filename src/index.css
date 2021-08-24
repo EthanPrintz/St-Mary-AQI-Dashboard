@@ -9,6 +9,30 @@
   src: local('PT Serif'),
     url('./assets/fonts/pt-serif/PTSerif-Bold.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  src: local('PT Sans'),
+    url('./assets/fonts/pt-sans/PTSans-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: bold;
+  src: local('PT Sans'),
+    url('./assets/fonts/pt-sans/PTSans-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  font-weight: bold;
+  src: local('PT Sans'),
+    url('./assets/fonts/pt-sans/PTSans-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'PT Sans';
+  src: local('PT Sans'),
+    url('./assets/fonts/pt-sans/PTSans-Regular.ttf') format('truetype');
+}
 
 body {
   margin: 0;
@@ -21,6 +45,10 @@ body {
   overflow: hidden;
   max-width: 100vw;
   max-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 code {

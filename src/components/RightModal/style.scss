@@ -27,12 +27,32 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    position: relative;
     .location-title {
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 1.3rem;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    .modal-close-icon {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 

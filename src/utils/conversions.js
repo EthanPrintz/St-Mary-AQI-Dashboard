@@ -4,6 +4,16 @@ export const convertRemToPixels = (rem) => {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 };
 
+export const convertAQIToDescription = (aqi) => {
+  let returnString = '';
+  aqiCategories.forEach((cat) => {
+    if (cat.low <= aqi && cat.high >= aqi) {
+      returnString = cat.guidance;
+    }
+  });
+  return returnString;
+};
+
 export const convertAQIToColor = (aqi) => {
   let returnHex = '';
   aqiCategories.forEach((cat) => {
@@ -33,4 +43,3 @@ export const convertPM10ToColor = (aqi) => {
   });
   return returnHex;
 };
-
