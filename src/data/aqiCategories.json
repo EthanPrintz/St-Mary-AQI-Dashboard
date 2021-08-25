@@ -1,8 +1,19 @@
-[
+[{
+	"color": "grey",
+	"hex":"#BABABA",
+	"low": 0,
+	"high": 0,
+	"pm25low": 0,
+	"pm25high": 0,
+	"pm10low": 0,
+	"pm10high": 0,
+	"description": "No Data",
+	"guidance": "Unable to get sensor data"
+},
 	{
 		"color": "green",
 		"hex":"#6CBE44",
-		"low": 0,
+		"low": 1,
 		"high": 50,
 		"pm25low": 0,
 		"pm25high": 12,
