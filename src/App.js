@@ -14,38 +14,44 @@ function App() {
   const [selectedSchoolID, setSelectedSchoolID] = useState(0);
   const [mapType, setMapType] = useState('classic'); //Can be classic or satellite
 
-  useEffect(async () => {
-    // Get data from all sources
-    const sensorData = await getLiveSensorData();
-    const schoolData = schoolDataJSON;
-    // Loop through schools to combine data into array  as single source of truth
-    schoolData.forEach((school) => {
-      // Construct array of sensor data for each school
-      school.sensors.forEach((schoolSensor) => {
-        let sensor = sensorData.find(
-          (liveSensor) => liveSensor.ID === schoolSensor['purple-air-id']
+  useEffect(() => {
+    let sensorData, schoolData;
+    (async () => {
+      // Get data from all sources
+      sensorData = await getLiveSensorData();
+      schoolData = schoolDataJSON;
+
+      // Loop through schools to combine data into array  as single source of truth
+      schoolData.forEach((school) => {
+        // Construct array of sensor data for each school
+        school.sensors.forEach((schoolSensor) => {
+          let sensor = sensorData.find(
+            (liveSensor) => liveSensor.ID === schoolSensor['purple-air-id']
+          );
+          try {
+            schoolSensor.liveAQI = sensor.AQI;
+            schoolSensor.livePM25 = sensor.pm2_5_current;
+          } catch {
+            schoolSensor.liveAQI = 0;
+            schoolSensor.livePM25 = 0;
+          }
+        });
+        // Get average PM 2.5 of all school's sensors
+        school.livePM25 = Math.round(
+          school.sensors.reduce((total, next) => total + next.livePM25, 0) /
+            school.sensors.length
         );
-        try {
-          schoolSensor.liveAQI = sensor.AQI;
-          schoolSensor.livePM25 = sensor.pm2_5_current;
-        } catch {
-          schoolSensor.liveAQI = 0;
-          schoolSensor.livePM25 = 0;
-        }
+        // Get average AQI of all school's sensors
+        school.liveAQI = Math.round(
+          school.sensors.reduce((total, next) => total + next.liveAQI, 0) /
+            school.sensors.length
+        );
       });
-      // Get average PM 2.5 of all school's sensors
-      school.livePM25 = Math.round(
-        school.sensors.reduce((total, next) => total + next.livePM25, 0) /
-          school.sensors.length
-      );
-      // Get average AQI of all school's sensors
-      school.liveAQI = Math.round(
-        school.sensors.reduce((total, next) => total + next.liveAQI, 0) /
-          school.sensors.length
-      );
+      setCombinedData(schoolData);
+      setCountyAQI(Math.round(await getCountyAQI()));
+    })().catch((err) => {
+      console.error(err);
     });
-    setCombinedData(schoolData);
-    setCountyAQI(Math.round(await getCountyAQI()));
   }, []);
 
   return (
@@ -63,13 +69,11 @@ function App() {
         mapType={mapType}
       />
       {selectedSchoolID !== 0 && (
-        <>
-          <RightModal
-            combinedData={combinedData}
-            selectedSchoolID={selectedSchoolID}
-            setSelectedSchoolID={setSelectedSchoolID}
-          />
-        </>
+        <RightModal
+          combinedData={combinedData}
+          selectedSchoolID={selectedSchoolID}
+          setSelectedSchoolID={setSelectedSchoolID}
+        />
       )}
       <MapControls setMapType={setMapType} mapType={mapType}></MapControls>
     </AppContainer>
