@@ -1,0 +1,18 @@
+{
+"type": "FeatureCollection",
+"name": "Pollution Sources JSON",
+"features": [
+{ "type": "Feature", "properties": { "Pollution_": "MD International Raceway", "Latitude": 38.39574, "Longitude": -76.84554, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1356601.195488417055458, 265555.975376130780205 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Potomac Speedway", "Latitude": 38.40247, "Longitude": -76.84139, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1357786.333554742624983, 268008.940793139627203 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Budd's Creek Motocross Park", "Latitude": 38.40557, "Longitude": -76.84177, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1357675.475101998774335, 269137.707381970074493 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Webster Field", "Latitude": 38.14776, "Longitude": -76.42622, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1477346.267044059699401, 175727.882236775272759 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Patuxent River NAS\/Trapnell Field", "Latitude": 38.28921, "Longitude": -76.42159, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1478351.357820180011913, 227248.413646683649858 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "PAX Ground Electronics Maintenance", "Latitude": 38.28152, "Longitude": -76.43196, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1475392.359237573808059, 224429.244747918361099 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "PAX 22445 Peary Road Environmental Dept", "Latitude": 38.28175, "Longitude": -76.43461, "Notes": "from Toxic Release Inventory" }, "geometry": { "type": "Point", "coordinates": [ 1474631.149399778572842, 224508.282621574529912 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Meredith Taylor Water Reclamation Facility", "Latitude": 38.26615, "Longitude": -76.41291, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1480896.713489414891228, 218866.522465017682407 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Hollywood concrete plant", "Latitude": 38.31994, "Longitude": -76.55868, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1438949.204403669107705, 238219.764209213113645 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Loveville Sand and Gravel", "Latitude": 38.34409, "Longitude": -76.67583, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1405307.294016766827554, 246873.732512685790425 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Mechanicsville concrete plant", "Latitude": 38.46619, "Longitude": -76.76469, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1379706.838660660898313, 291261.837537502287887 ] } },
+{ "type": "Feature", "properties": { "Pollution_": "Sloan Materials", "Latitude": 38.35322, "Longitude": -76.6589, "Notes": null }, "geometry": { "type": "Point", "coordinates": [ 1410150.513182072900236, 250216.354569527204148 ] } }
+]
+}
